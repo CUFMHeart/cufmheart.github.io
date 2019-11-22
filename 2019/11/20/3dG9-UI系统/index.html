@@ -6,15 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://sentimentalswordsman.github.io">
-  <title>Blog_Sentimentalswordsman</title>
+  <title>3D Game 9 - UI系统 | Blog_Sentimentalswordsman</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Blog_Sentimentalswordsman">
-<meta property="og:url" content="https://sentimentalswordsman.github.io/index.html">
+  <meta name="description" content="横看成岭侧成峰，远近高低各不同。不识庐山真面目，只缘身在此山中。 — 【宋】苏轼 《题西林壁》">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3D Game 9 - UI系统">
+<meta property="og:url" content="https://sentimentalswordsman.github.io/2019/11/20/3dG9-UI系统/index.html">
 <meta property="og:site_name" content="Blog_Sentimentalswordsman">
+<meta property="og:description" content="横看成岭侧成峰，远近高低各不同。不识庐山真面目，只缘身在此山中。 — 【宋】苏轼 《题西林壁》">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="http://sentimentalswordsman.github.io/img/3dg-hw9/1.png">
+<meta property="og:image" content="http://sentimentalswordsman.github.io/img/3dg-hw9/2.png">
+<meta property="og:image" content="http://sentimentalswordsman.github.io/img/3dg-hw9/3.png">
+<meta property="og:image" content="http://sentimentalswordsman.github.io/img/3dg-hw9/4.png">
+<meta property="og:updated_time" content="2019-11-22T18:03:54.774Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Blog_Sentimentalswordsman">
+<meta name="twitter:title" content="3D Game 9 - UI系统">
+<meta name="twitter:description" content="横看成岭侧成峰，远近高低各不同。不识庐山真面目，只缘身在此山中。 — 【宋】苏轼 《题西林壁》">
+<meta name="twitter:image" content="http://sentimentalswordsman.github.io/img/3dg-hw9/1.png">
   
     <link rel="alternative" href="/atom.xml" title="Blog_Sentimentalswordsman" type="application/atom+xml">
   
@@ -148,16 +157,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-3dG9-UI系统" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-3dG9-UI系统" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/20/3dG9-UI系统/">3D Game 9 - UI系统</a>
+    <h1 class="article-title" itemprop="name">
+      3D Game 9 - UI系统
     </h1>
   
 
@@ -174,9 +181,59 @@
 <p><strong><em>横看成岭侧成峰，远近高低各不同。不识庐山真面目，只缘身在此山中。</em></strong></p>
 <p><em>— 【宋】苏轼 《题西林壁》</em></p>
 </blockquote>
-        
-          <a class="article-more-a" href="/2019/11/20/3dG9-UI系统/#more">more >></a>
-        
+<a id="more"></a>
+
+<h2 id="UI-系统"><a href="#UI-系统" class="headerlink" title="UI 系统"></a>UI 系统</h2><h3 id="Unity-UI-技术概述"><a href="#Unity-UI-技术概述" class="headerlink" title="Unity UI 技术概述"></a>Unity UI 技术概述</h3><p>UI 即 <strong>User Interface（用户界面）</strong>的简称。在许多软件中，采用狭义的概念，特指窗体、面板、按钮、文本框等人们熟悉的人机交互元素，及其组织与风格（也称皮肤）。Unity UI 系统采用上述狭义概念。</p>
+<p>Unity 目前支持三套完全不同风格的 UI 系统：</p>
+<ul>
+<li>4.0 及以前 - <strong>IMGUI</strong>（Immediate Mode GUI）及时模式图形界面。它是代码驱动的 UI 系统，没有图形化设计界面，只能在 OnGUI 阶段用 GUI 系列的类绘制各种 UI 元素，因此 UI元素只能浮在游戏界面之上。</li>
+<li>5.0 及以后 - <strong>Unity GUI / UGUI</strong> 是面向对象的 UI 系统。所有 UI 元素都是游戏对象，友好的图形化设计界面， 可在场景渲染阶段渲染这些 UI 元素。</li>
+<li>2018.3 及以后 - <strong>UXML</strong>（unity 扩展标记语言）。基于 IMGUI 的 AXML 包装，方便移动应用开发者入门。</li>
+</ul>
+<h3 id="UGUI-基础"><a href="#UGUI-基础" class="headerlink" title="UGUI 基础"></a>UGUI 基础</h3><p><strong>画布</strong></p>
+<p>画布（Cavas）是绘图区域, 同时是 ui 元素的容器。 容器中 ui 元素及其子 UI 元素都将绘制在其上。 拥有Canvas组件的游戏对象都有一个画布，它空间中的子对象，如果是 UI 元素将渲染在画布上。画布区域在场景视图中显示为矩形。这使得定位UI元素变得非常容易，无需随时显示游戏运行视图。</p>
+<p> <strong>UI 布局基础</strong></p>
+<p>每个UI元素都被表示为一个矩形，为了相对于 Canvas 和 其他 UI 元素实现定位，Unity 在 Transform 基础上定义了 RectTransform （矩形变换） 支持矩形元素在 2/3D 场景中变换。</p>
+<p><strong>UI 组件与元素</strong></p>
+<p>UI 部件都是用 Script 开发的自定义组件。包括在 UI、Layout 和 Rendering 等分类。</p>
+<p><strong>圆形遮罩、动画、富文本、血条</strong></p>
+<p>圆形遮罩、动画、富文本、血条等都是菜单制作，初步理解 Text，Image，RowImage，Mask 等的基本使用技巧。</p>
+<h2 id="作业与练习：UI-效果制作"><a href="#作业与练习：UI-效果制作" class="headerlink" title="作业与练习：UI 效果制作"></a>作业与练习：UI 效果制作</h2><h3 id="作业要求"><a href="#作业要求" class="headerlink" title="作业要求"></a>作业要求</h3><p>进入 <a href="http://www.tasharen.com/?page_id=140" target="_blank" rel="noopener">NGUI</a> 官方网站，使用 UGUI 实现“<strong>Inventory 背包系统</strong>”的效果。</p>
+<h3 id="预期目标"><a href="#预期目标" class="headerlink" title="预期目标"></a>预期目标</h3><ol>
+<li>实现背包系统的右侧，即背包栏，一共3*3个格子，可以存放物品；</li>
+<li>实现背包系统的中侧，即用一个物体来表示玩家主体；</li>
+<li>实现背包系统的左侧，即佩戴栏，一共1*3个格子，可以佩戴物品；</li>
+<li>实现物品的显示，本设计中用图片代替；</li>
+<li>实现背包系统界面随鼠标移动而旋转的效果；</li>
+<li>实现物体的佩戴、摆放、替换过程。</li>
+</ol>
+<h3 id="完成情况"><a href="#完成情况" class="headerlink" title="完成情况"></a>完成情况</h3><p><strong>游戏界面1</strong></p>
+<p><img src="http://sentimentalswordsman.github.io/img/3dg-hw9/1.png" alt></p>
+<p><strong>游戏界面2</strong></p>
+<p><img src="http://sentimentalswordsman.github.io/img/3dg-hw9/2.png" alt></p>
+<p><strong>游戏界面3</strong></p>
+<p><img src="http://sentimentalswordsman.github.io/img/3dg-hw9/3.png" alt></p>
+<h3 id="项目设计"><a href="#项目设计" class="headerlink" title="项目设计"></a>项目设计</h3><p><strong>目录结构</strong></p>
+<p><img src="http://sentimentalswordsman.github.io/img/3dg-hw9/4.png" alt></p>
+<p><strong>完成步骤</strong></p>
+<ul>
+<li><p><strong>结构设计</strong>：使用背景板来构建背包系统的背景；将摄像机作为母对象，并添加EventSystem；使用普通的GameObject来表示玩家主体；使用Canvas来设置BackpackSystem；使用Grid LayOut Group部件来对背包栏和佩戴栏进行布局；用空的Image对象来表示空格子及物品。</p>
+</li>
+<li><p><strong>代码设计1</strong>：对Inventory对象添加脚本以实现随鼠标移动而旋转的效果，只需要获取界面鼠标的位置，并随之改变角度即可，代码如下所示。</p>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">using UnityEngine;</span><br><span class="line">using System.Collections;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line"></span><br><span class="line">public class Mouse : MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    Transform trans;</span><br><span class="line">    Quaternion quaternion;</span><br><span class="line">    public Vector2 lerp = Vector2.zero;</span><br><span class="line">    public Vector2 v2 = new Vector2(4f, 2f);</span><br><span class="line"></span><br><span class="line">    void Start()</span><br><span class="line">    &#123;</span><br><span class="line">        trans = transform;</span><br><span class="line">        quaternion = trans.localRotation;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void Update()</span><br><span class="line">    &#123;</span><br><span class="line">        Vector3 pos = Input.mousePosition;</span><br><span class="line">        float mywidth = Screen.width * 0.5f;</span><br><span class="line">        float myheight = Screen.height * 0.5f;</span><br><span class="line">        float x = Mathf.Clamp((pos.x - mywidth) / mywidth, -0.5f, 0.5f);</span><br><span class="line">        float y = Mathf.Clamp((pos.y - myheight) / myheight, -0.5f, 0.5f);</span><br><span class="line">        lerp = Vector2.Lerp(lerp, new Vector2(x, y), Time.deltaTime * 2f);</span><br><span class="line">        trans.localRotation = quaternion * Quaternion.Euler(-lerp.y * v2.y, -lerp.x * v2.x, 0f);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>代码设计2</strong>：对表示物体的Image对象添加脚本以实现拖拽的UI效果，需要使用到接口IBeginDragHandler、IDragHandler、IEndDragHandler，代码如下所示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line">using UnityEngine;</span><br><span class="line">using UnityEngine.UI;</span><br><span class="line">using UnityEngine.EventSystems;</span><br><span class="line">using System.Collections;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line"></span><br><span class="line">public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler</span><br><span class="line">&#123;</span><br><span class="line">    Transform trans;</span><br><span class="line">    RectTransform rect_trans;</span><br><span class="line">    CanvasGroup canvas_group;</span><br><span class="line">    GameObject grid = null;</span><br><span class="line">    Color grid_color_1;</span><br><span class="line">    Color grid_color_2 = Color.grey;</span><br><span class="line">    public Vector3 v3;</span><br><span class="line"></span><br><span class="line">    void Start()</span><br><span class="line">    &#123;</span><br><span class="line">        // Debug.Log(&quot;000&quot;);</span><br><span class="line">        trans = this.transform;</span><br><span class="line">        v3 = trans.position;</span><br><span class="line">        rect_trans = this.transform as RectTransform;</span><br><span class="line">        canvas_group = GetComponent&lt;CanvasGroup&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void Update()</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void OnBeginDrag(PointerEventData eventData)</span><br><span class="line">    &#123;</span><br><span class="line">        // Debug.Log(&quot;OnBeginDrag&quot;);</span><br><span class="line">        canvas_group.blocksRaycasts = false;</span><br><span class="line">        grid = eventData.pointerEnter;</span><br><span class="line">        grid_color_1 = grid.GetComponent&lt;Image&gt;().color;</span><br><span class="line">        v3 = trans.position;</span><br><span class="line">        gameObject.transform.SetAsLastSibling();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void OnDrag(PointerEventData eventData)</span><br><span class="line">    &#123;</span><br><span class="line">        // Debug.Log(&quot;OnDrag&quot;);</span><br><span class="line">        bool flag = true;</span><br><span class="line">        Vector3 mouse_position;</span><br><span class="line">        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(rect_trans, eventData.position, eventData.pressEventCamera, out mouse_position))</span><br><span class="line">        &#123;</span><br><span class="line">            rect_trans.position = mouse_position;</span><br><span class="line">        &#125;</span><br><span class="line">        GameObject now_grid_p = eventData.pointerEnter;</span><br><span class="line">        if (now_grid_p == null)</span><br><span class="line">        &#123;</span><br><span class="line">            flag = false;</span><br><span class="line">        &#125;</span><br><span class="line">        else if (now_grid_p.name != &quot;bag_grid&quot;)</span><br><span class="line">        &#123;</span><br><span class="line">            flag = false;</span><br><span class="line">        &#125;</span><br><span class="line">        if (flag)</span><br><span class="line">        &#123;</span><br><span class="line">            Image pic = now_grid_p.GetComponent&lt;Image&gt;();</span><br><span class="line">            grid.GetComponent&lt;Image&gt;().color = grid_color_1;</span><br><span class="line">            if (grid != now_grid_p)</span><br><span class="line">            &#123;</span><br><span class="line">                grid.GetComponent&lt;Image&gt;().color = grid_color_1;</span><br><span class="line">                grid = now_grid_p;</span><br><span class="line">            &#125;</span><br><span class="line">            pic.color = grid_color_2;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void OnEndDrag(PointerEventData eventData)</span><br><span class="line">    &#123;</span><br><span class="line">        // Debug.Log(&quot;OnEndDrag&quot;);</span><br><span class="line">        GameObject now_grid_p = eventData.pointerEnter;</span><br><span class="line">        if (now_grid_p == null)</span><br><span class="line">        &#123;</span><br><span class="line">            trans.position = v3;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            if (now_grid_p.name == &quot;bag_grid&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">                trans.position = now_grid_p.transform.position;</span><br><span class="line">                v3 = trans.position;</span><br><span class="line">                now_grid_p.GetComponent&lt;Image&gt;().color = grid_color_1;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if (now_grid_p.name == eventData.pointerDrag.name &amp;&amp; now_grid_p != eventData.pointerDrag)</span><br><span class="line">                &#123;</span><br><span class="line">                    Vector3 target_pos = now_grid_p.transform.position;</span><br><span class="line">                    now_grid_p.transform.position = v3;</span><br><span class="line">                    trans.position = target_pos;</span><br><span class="line">                    v3 = trans.position;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    trans.position = v3;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        grid.GetComponent&lt;Image&gt;().color = grid_color_1;</span><br><span class="line">        canvas_group.blocksRaycasts = true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h4><p><strong>代码地址：</strong><a href="https://github.com/SentimentalSwordsman/3D-Game-Programming-Design/tree/master/homework9/" target="_blank" rel="noopener">https://github.com/SentimentalSwordsman/3D-Game-Programming-Design/tree/master/homework9/</a></p>
+<p><strong>视频地址：</strong><a href="https://www.bilibili.com/video/av76655299/" target="_blank" rel="noopener">https://www.bilibili.com/video/av76655299/</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="https://pmlpml.github.io/unity3d-learning/09-ui.html" target="_blank" rel="noopener">UI系统_教学讲义</a></p>
+<p>[2] <a href="https://docs.unity3d.com/Manual/index.html" target="_blank" rel="noopener">Maunal</a></p>
+<p>[3]  <a href="https://docs.unity3d.com/Manual/UISystem.html" target="_blank" rel="noopener">https://docs.unity3d.com/Manual/UISystem.html</a></p>
+
       
 
       
@@ -187,16 +244,75 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/20/3dG9-UI系统/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://sentimentalswordsman.github.io/2019/11/20/3dG9-UI系统/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2019/11/04/3dG8-粒子系统/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">3D Game 8 - 粒子系统</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -211,554 +327,32 @@
         </div>
         
         
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-3dG8-粒子系统" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/11/04/3dG8-粒子系统/">3D Game 8 - 粒子系统</a>
-    </h1>
-  
-
-        
-        <a href="/2019/11/04/3dG8-粒子系统/" class="archive-article-date">
-  	<time datetime="2019-11-04T08:02:41.340Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-11-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p><strong>东风袅袅泛崇光，香雾空蒙月转廊。</strong></p>
-<p><em>— 【宋】苏轼 《海棠》</em></p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2019/11/04/3dG8-粒子系统/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/11/04/3dG8-粒子系统/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#UI-系统"><span class="toc-number">1.</span> <span class="toc-text">UI 系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unity-UI-技术概述"><span class="toc-number">1.1.</span> <span class="toc-text">Unity UI 技术概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UGUI-基础"><span class="toc-number">1.2.</span> <span class="toc-text">UGUI 基础</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作业与练习：UI-效果制作"><span class="toc-number">2.</span> <span class="toc-text">作业与练习：UI 效果制作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#作业要求"><span class="toc-number">2.1.</span> <span class="toc-text">作业要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#预期目标"><span class="toc-number">2.2.</span> <span class="toc-text">预期目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#完成情况"><span class="toc-number">2.3.</span> <span class="toc-text">完成情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#项目设计"><span class="toc-number">2.4.</span> <span class="toc-text">项目设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#项目地址"><span class="toc-number">2.4.1.</span> <span class="toc-text">项目地址</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">3.</span> <span class="toc-text">参考资料</span></a></li></ol>
+                    </div>
+                </span>
             </div>
         </div>
         
-        
     </div>
 </aside>
 
 
 
-
   
-    <article id="post-3dG7-模型与动画" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/25/3dG7-模型与动画/">3D Game 7 - 模型与动画</a>
-    </h1>
   
 
-        
-        <a href="/2019/10/25/3dG7-模型与动画/" class="archive-article-date">
-  	<time datetime="2019-10-25T08:50:30.687Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-25</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p><strong>云想衣裳花想容， 春风拂槛露华浓。<br>若非群玉山头见， 会向瑶台月下逢。</strong></p>
-<p><em>— 【唐】李白 《清平调》</em></p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2019/10/25/3dG7-模型与动画/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/25/3dG7-模型与动画/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-3dG6-物理系统与碰撞" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/18/3dG6-物理系统与碰撞/">3D Game 6 - 物理系统与碰撞</a>
-    </h1>
   
 
-        
-        <a href="/2019/10/18/3dG6-物理系统与碰撞/" class="archive-article-date">
-  	<time datetime="2019-10-17T16:26:24.217Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p><strong>It was awful tasting medicine, but I guess the patient needed it. Sometimes life hits you in the head with a brick. Don’t lose faith</strong></p>
-<p><em>— Steve Jobs, Stanford Report, June 14, 2005</em></p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2019/10/18/3dG6-物理系统与碰撞/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/18/3dG6-物理系统与碰撞/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-3dG5-与游戏世界交互" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/09/3dG5-与游戏世界交互/">3D Game 5 - 与游戏世界交互</a>
-    </h1>
   
 
-        
-        <a href="/2019/10/09/3dG5-与游戏世界交互/" class="archive-article-date">
-  	<time datetime="2019-10-08T16:55:01.055Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p><strong>It freed me to enter one of the most creative periods of my life</strong></p>
-<p><em>— Steve Jobs, Stanford Report, June 14, 2005</em></p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2019/10/09/3dG5-与游戏世界交互/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/09/3dG5-与游戏世界交互/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-3dG4-游戏对象与图形基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/10/02/3dG4-游戏对象与图形基础/">3D Game 4 - 游戏对象与图形基础</a>
-    </h1>
-  
-
-        
-        <a href="/2019/10/02/3dG4-游戏对象与图形基础/" class="archive-article-date">
-  	<time datetime="2019-10-01T18:30:52.982Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-02</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p><strong>It was beautiful, historical, artistically subtle in a way that science can’t capture, and I found it fascinating</strong></p>
-<p><em>— Steve Jobs, Stanford Report, June 14, 2005</em></p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2019/10/02/3dG4-游戏对象与图形基础/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/10/02/3dG4-游戏对象与图形基础/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-3dG3-空间与运动" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/20/3dG3-空间与运动/">3D Game 3 - 空间与运动</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/20/3dG3-空间与运动/" class="archive-article-date">
-  	<time datetime="2019-09-20T07:24:45.760Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p><strong>I stumbled into by following my curiosity and intuition turned out to be priceless later on</strong><br><em>— Steve Jobs, Stanford Report, June 14, 2005</em></p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2019/09/20/3dG3-空间与运动/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/20/3dG3-空间与运动/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-3dG2-离散仿真引擎基础" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/10/3dG2-离散仿真引擎基础/">3D Game 2 - 离散仿真引擎基础</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/10/3dG2-离散仿真引擎基础/" class="archive-article-date">
-  	<time datetime="2019-09-10T07:06:29.800Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p><strong>You can’t connect the dots looking forward; you can only connect them looking backwards</strong><br><em>— Steve Jobs, Stanford Report, June 14, 2005</em></p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2019/09/10/3dG2-离散仿真引擎基础/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/10/3dG2-离散仿真引擎基础/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-3dG1-World-of-Goo" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/04/3dG1-World-of-Goo/">3D Game 1 - World of Goo</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/04/3dG1-World-of-Goo/" class="archive-article-date">
-  	<time datetime="2019-09-04T08:09:40.348Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>作业内容：阅读 Tracy Fullerton, <em>GAME DESIGN WORKSHOP</em> 第二、第三章。选择一款你喜欢的中等规模游戏，如“植物大战僵尸体”，对游戏设计元素进行分析，阐述其当年成功的可能因素。</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2019/09/04/3dG1-World-of-Goo/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/04/3dG1-World-of-Goo/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
 
 
@@ -781,8 +375,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
