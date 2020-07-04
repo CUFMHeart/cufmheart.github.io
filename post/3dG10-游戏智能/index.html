@@ -21,21 +21,21 @@
     
     <meta name="description" content>
     <meta name="description" content="冰雪净聪明，雷霆走精锐 — 【唐】杜甫 《送樊二十三侍御赴汉中判官》">
-<meta name="keywords" content="3D游戏编程设计,课程学习">
+<meta name="keywords" content="3D-Game-Programming&amp;Design,SYSU-Course">
 <meta property="og:type" content="article">
 <meta property="og:title" content="3D Game 10 - 游戏智能">
 <meta property="og:url" content="https://cufmheart.github.io/post/3dG10-游戏智能/index.html">
 <meta property="og:site_name" content="CUFMH2Blog">
 <meta property="og:description" content="冰雪净聪明，雷霆走精锐 — 【唐】杜甫 《送樊二十三侍御赴汉中判官》">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://sentimentalswordsman.github.io/img/3dg-hw10/1.png">
-<meta property="og:image" content="http://sentimentalswordsman.github.io/img/3dg-hw10/2.png">
-<meta property="og:image" content="http://sentimentalswordsman.github.io/img/3dg-hw10/3.png">
-<meta property="og:updated_time" content="2020-07-04T17:33:09.758Z">
+<meta property="og:image" content="https://cufmheart.github.io/post/3dG10-游戏智能/1.png">
+<meta property="og:image" content="https://cufmheart.github.io/post/3dG10-游戏智能/2.png">
+<meta property="og:image" content="https://cufmheart.github.io/post/3dG10-游戏智能/3.png">
+<meta property="og:updated_time" content="2020-07-04T18:34:28.170Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="3D Game 10 - 游戏智能">
 <meta name="twitter:description" content="冰雪净聪明，雷霆走精锐 — 【唐】杜甫 《送樊二十三侍御赴汉中判官》">
-<meta name="twitter:image" content="http://sentimentalswordsman.github.io/img/3dg-hw10/1.png">
+<meta name="twitter:image" content="https://cufmheart.github.io/post/3dG10-游戏智能/1.png">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
@@ -283,9 +283,9 @@ height:40vh;
                 
                     <div class= post-intro-tags >
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "3D游戏编程设计">3D游戏编程设计</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "3D-Game-Programming&Design">3D-Game-Programming&Design</a>
     
-        <a class="post-tag" href="javascript:void(0);" data-tags = "课程学习">课程学习</a>
+        <a class="post-tag" href="javascript:void(0);" data-tags = "SYSU-Course">SYSU-Course</a>
     
 </div>
                 
@@ -453,12 +453,12 @@ height:40vh;
 <li>可以模拟整个游戏过程</li>
 </ol>
 <h3 id="项目设计"><a href="#项目设计" class="headerlink" title="项目设计"></a>项目设计</h3><p><strong>目录结构</strong></p>
-<p><img src="http://sentimentalswordsman.github.io/img/3dg-hw10/1.png" alt></p>
+<p><img src="//cufmheart.github.io/post/3dG10-游戏智能/1.png" alt></p>
 <p><strong>状态图生成</strong></p>
-<p><img src="http://sentimentalswordsman.github.io/img/3dg-hw10/2.png" alt></p>
+<p><img src="//cufmheart.github.io/post/3dG10-游戏智能/2.png" alt></p>
 <p>　该状态图只记录了游戏过程中左岸的情况。P代表牧师，D代表魔鬼，B代表船。当船在右岸时不记录。双箭头代表两个状态可以相互转化。 实现AI的基本原理是：点击next之后，分析当前场景的状态，读取成功路径上的下一个状态，执行相应动作以达到下一个状态。 基于以上原理，我们可以按如下方式实现。首先，根据当前的状态，分析接下来需要执行的一个动作。</p>
 <h3 id="完成情况"><a href="#完成情况" class="headerlink" title="完成情况"></a>完成情况</h3><p><strong>游戏界面</strong></p>
-<p><img src="http://sentimentalswordsman.github.io/img/3dg-hw10/3.png" alt></p>
+<p><img src="//cufmheart.github.io/post/3dG10-游戏智能/3.png" alt></p>
 <p><strong>代码设计</strong></p>
 <p>使用hw4的牧师与魔鬼动作分离版来拓展出本次状态机版本的牧师与魔鬼游戏，动作分离版中设计一个了裁判类，当游戏达到结束条件时，通知场景控制器游戏结束，再加入StateMachine类来完成状态图的转换，关键代码如下：</p>
 <p>Action.cs</p>
@@ -473,7 +473,7 @@ height:40vh;
 <p>Judge.cs</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">using System.Collections;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using UnityEngine;</span><br><span class="line">using Interfaces;</span><br><span class="line"></span><br><span class="line">public class Judge : MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    public int state;</span><br><span class="line">    InteracteGUI UserGUI;</span><br><span class="line">    private FirstController FC;</span><br><span class="line"></span><br><span class="line">    void Awake()</span><br><span class="line">    &#123;</span><br><span class="line">        state = 0; </span><br><span class="line">        UserGUI = gameObject.AddComponent&lt;InteracteGUI&gt;() as InteracteGUI;</span><br><span class="line">        FC = GetComponent&lt;FirstController&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void Update()</span><br><span class="line">    &#123;</span><br><span class="line">        Check();</span><br><span class="line">        // Debug.Log(&quot;state: &quot; + state);</span><br><span class="line">        UserGUI.SetState = state;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setState(int sta)</span><br><span class="line">    &#123;</span><br><span class="line">        state = sta;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int getState()</span><br><span class="line">    &#123;</span><br><span class="line">        return state;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void Check()</span><br><span class="line">    &#123;</span><br><span class="line">        // 0-play, 1-win, 2-lose</span><br><span class="line">        int p_coast1_num = 0;</span><br><span class="line">        int d_coast1_num = 0;</span><br><span class="line">        int p_coast2_num = 0;</span><br><span class="line">        int d_coast2_num = 0;</span><br><span class="line">        int[] coast1_arr = FC.coast1.GetobjectsNumber();</span><br><span class="line">        int[] coast2_arr = FC.coast2.GetobjectsNumber();</span><br><span class="line">        int[] boat_arr = FC.boat.GetobjectsNumber();</span><br><span class="line">        //  分别计算两侧岸上的人数</span><br><span class="line">        d_coast1_num += coast1_arr[0];</span><br><span class="line">        p_coast1_num += coast1_arr[1];</span><br><span class="line">        d_coast2_num += coast2_arr[0];</span><br><span class="line">        p_coast2_num += coast2_arr[1];</span><br><span class="line">        //  判断是否胜利</span><br><span class="line">        if (p_coast2_num + d_coast2_num == 6)      // win</span><br><span class="line">        &#123;</span><br><span class="line">            state = 1;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        //  计算船上人数，累加进累加器</span><br><span class="line">        if (FC.boat.GetState() == 1)</span><br><span class="line">        &#123;</span><br><span class="line">            d_coast1_num += boat_arr[0];</span><br><span class="line">            p_coast1_num += boat_arr[1];</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            d_coast2_num += boat_arr[0];</span><br><span class="line">            p_coast2_num += boat_arr[1];</span><br><span class="line">        &#125;</span><br><span class="line">        //  判断是否失败</span><br><span class="line">        //  检查coast1</span><br><span class="line">        if (p_coast1_num &lt; d_coast1_num &amp;&amp; p_coast1_num &gt; 0)</span><br><span class="line">        &#123;</span><br><span class="line">            state = 2;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        //  检查coast2</span><br><span class="line">        if (p_coast2_num &lt; d_coast2_num &amp;&amp; p_coast2_num &gt; 0)</span><br><span class="line">        &#123;</span><br><span class="line">            state = 2;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        state = 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h4 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h4><p><strong>代码地址：</strong><a href="https://github.com/SentimentalSwordsman/3D-Game-Programming-Design/tree/master/homework10/" target="_blank" rel="noopener">https://github.com/SentimentalSwordsman/3D-Game-Programming-Design/tree/master/homework10/</a></p>
+<h4 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h4><p><strong>代码地址：</strong><a href="https://github.com/CUFMHeart/3D-Game-Programming-Design/tree/master/homework10/" target="_blank" rel="noopener">https://github.com/CUFMHeart/3D-Game-Programming-Design/tree/master/homework10/</a></p>
 <p><strong>视频地址：</strong><a href="https://www.bilibili.com/video/av78405322/" target="_blank" rel="noopener">https://www.bilibili.com/video/av78405322/</a></p>
 <h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="https://pmlpml.github.io/unity3d-learning/10-intelligent.html" target="_blank" rel="noopener">游戏智能_教学讲义</a></p>
 <p>[2] <a href="https://docs.unity3d.com/Manual/index.html" target="_blank" rel="noopener">Maunal</a></p>
@@ -756,6 +756,28 @@ top:40vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 11
@@ -832,21 +854,11 @@ top:40vh;
         <div class="sidebar-panel-tags">
     <div class="sidebar-tags-name">
     
-        <span class="sidebar-tag-name" data-tags="3D游戏编程设计, 课程学习"><span class="iconfont-archer">&#xe606;</span>3D游戏编程设计, 课程学习</span>
-    
-        <span class="sidebar-tag-name" data-tags="3D游戏编程设计"><span class="iconfont-archer">&#xe606;</span>3D游戏编程设计</span>
-    
-        <span class="sidebar-tag-name" data-tags="课程学习"><span class="iconfont-archer">&#xe606;</span>课程学习</span>
-    
-        <span class="sidebar-tag-name" data-tags="AR/MR"><span class="iconfont-archer">&#xe606;</span>AR/MR</span>
-    
         <span class="sidebar-tag-name" data-tags="3D-Game-Programming&Design"><span class="iconfont-archer">&#xe606;</span>3D-Game-Programming&Design</span>
-    
-        <span class="sidebar-tag-name" data-tags="SYSU-COURSE"><span class="iconfont-archer">&#xe606;</span>SYSU-COURSE</span>
     
         <span class="sidebar-tag-name" data-tags="SYSU-Course"><span class="iconfont-archer">&#xe606;</span>SYSU-Course</span>
     
-        <span class="sidebar-tag-name" data-tags="-3D-Game-Programming&Design -SYSU-Course"><span class="iconfont-archer">&#xe606;</span>-3D-Game-Programming&Design -SYSU-Course</span>
+        <span class="sidebar-tag-name" data-tags="AR/MR"><span class="iconfont-archer">&#xe606;</span>AR/MR</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -880,12 +892,6 @@ jsonContent:
 </div>
         <div class="sidebar-panel-categories">
     <div class="sidebar-categories-name">
-    
-        <span class="sidebar-category-name" data-categories="3D游戏编程设计"><span class="iconfont-archer">&#xe60a;</span>3D游戏编程设计</span>
-    
-        <span class="sidebar-category-name" data-categories="3D-Game-Programming-Design"><span class="iconfont-archer">&#xe60a;</span>3D-Game-Programming-Design</span>
-    
-        <span class="sidebar-category-name" data-categories="3D-Game-Programming-Design"><span class="iconfont-archer">&#xe60a;</span>3D-Game-Programming-Design</span>
     
         <span class="sidebar-category-name" data-categories="3D-Game-Programming-Design"><span class="iconfont-archer">&#xe60a;</span>3D-Game-Programming-Design</span>
     
