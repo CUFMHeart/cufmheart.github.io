@@ -747,7 +747,7 @@ var scroll = function scroll() {
     } else if (crossingState === -1) {
       $tocWrapper.removeClass('toc-fixed');
       $homeLink.removeClass('home-link-hide');
-      $banner.removeClass('banner-show');
+      // $banner.removeClass('banner-show');
       $backTop.removeClass('back-top-show');
       $sidebarMenu.removeClass('header-sidebar-menu-black');
     } // 如果不是post - page 以下忽略
@@ -757,12 +757,12 @@ var scroll = function scroll() {
       // 上下滑动一定距离显示/隐藏header
       var upDownState = isScrollingUpOrDown(scrollTop);
 
-      if (upDownState === 1) {
-        $banner.removeClass('banner-show');
-      } else if (upDownState === -1 && !isHigherThanIntro) {
-        $banner.addClass('banner-show');
-      } // 进度条君的长度
-
+      // if (upDownState === 1) {
+      //   $banner.removeClass('banner-show');
+      // } else if (upDownState === -1 && !isHigherThanIntro) {
+      //   $banner.addClass('banner-show');
+      // } 
+      // 进度条君的长度
 
       updateProgress(scrollTop, articleTop, articleHeight);
     }
