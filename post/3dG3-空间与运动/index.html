@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="CUFMH2">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="CUFMH2">
+    
+    <meta name="keywords" content="CUFMH,cufmheart">
+    
+    <meta name="description" content>
+    <meta name="description" content="I stumbled into by following my curiosity and intuition turned out to be priceless later on— Steve Jobs, Stanford Report, June 14, 2005">
+<meta name="keywords" content="3D游戏编程设计,课程学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3D Game 3 - 空间与运动">
+<meta property="og:url" content="https://cufmheart.github.io/post/3dG3-空间与运动/index.html">
+<meta property="og:site_name" content="CUFMH2Blog">
+<meta property="og:description" content="I stumbled into by following my curiosity and intuition turned out to be priceless later on— Steve Jobs, Stanford Report, June 14, 2005">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://sentimentalswordsman.github.io/img/3dg-hw3/1.png">
+<meta property="og:image" content="http://sentimentalswordsman.github.io/img/3dg-hw3/2.png">
+<meta property="og:image" content="http://sentimentalswordsman.github.io/img/3dg-hw3/3.png">
+<meta property="og:image" content="http://sentimentalswordsman.github.io/img/3dg-hw3/4.png">
+<meta property="og:image" content="http://sentimentalswordsman.github.io/img/3dg-hw3/5.png">
+<meta property="og:image" content="http://sentimentalswordsman.github.io/img/3dg-hw3/6.png">
+<meta property="og:image" content="http://sentimentalswordsman.github.io/img/3dg-hw3/7.png">
+<meta property="og:image" content="http://sentimentalswordsman.github.io/img/3dg-hw3/8.png">
+<meta property="og:image" content="http://sentimentalswordsman.github.io/img/3dg-hw3/9.png">
+<meta property="og:updated_time" content="2020-07-04T17:30:42.578Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="3D Game 3 - 空间与运动">
+<meta name="twitter:description" content="I stumbled into by following my curiosity and intuition turned out to be priceless later on— Steve Jobs, Stanford Report, June 14, 2005">
+<meta name="twitter:image" content="http://sentimentalswordsman.github.io/img/3dg-hw3/1.png">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>3D Game 3 - 空间与运动 · CUFMH2Blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/avatar/icon_128x1282.png">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >CUFMH2Blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">3D Game 3 - 空间与运动</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>CUFMH2Blog</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:40vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.png)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            3D Game 3 - 空间与运动
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "3D游戏编程设计">3D游戏编程设计</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "课程学习">课程学习</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>
+                            Word count: 
+                                <span class="post-count word-count">2.8k</span>
+                            Reading time: 
+                                <span class="post-count reading-time">12 min</span>
+                        </span>
+
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer power">&#xe676;</span>
+                    <span class="post-intro-time">2019-09-20</span>
+                    
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer">&#xe604;</span>
+                            <span id="busuanzi_value_page_pv">calculating</span>
+                        </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <blockquote>
+<p><strong>I stumbled into by following my curiosity and intuition turned out to be priceless later on</strong><br><em>— Steve Jobs, Stanford Report, June 14, 2005</em></p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="空间与运动"><a href="#空间与运动" class="headerlink" title="空间与运动"></a>空间与运动</h2><h3 id="游戏的设计维度"><a href="#游戏的设计维度" class="headerlink" title="游戏的设计维度"></a>游戏的设计维度</h3><ul>
+<li><strong>空间维度</strong>：自由度、尺度、边界等；</li>
+<li><strong>时间维度</strong>：年代、时段等；</li>
+<li><strong>环境维度</strong>：时代与文化背景、艺术风格与形式、场景与物体搭配等</li>
+<li>情感维度、道德维度等</li>
+</ul>
+<h3 id="游戏世界空间模型"><a href="#游戏世界空间模型" class="headerlink" title="游戏世界空间模型"></a>游戏世界空间模型</h3><ul>
+<li><strong>世界坐标</strong>：一个游戏或游戏场景的<strong>绝对坐标</strong>系统。每个游戏对象的位置、角度、比例的值都这个坐标系下是唯一的。</li>
+<li><strong>对象坐标</strong>：游戏对象相对父游戏对象的位置、角度、比例。又称为<strong>相对坐标</strong>。</li>
+<li>3D空间（左手、右手坐标系统）、2D空间等。</li>
+</ul>
+<h3 id="坐标变化与运动"><a href="#坐标变化与运动" class="headerlink" title="坐标变化与运动"></a>坐标变化与运动</h3><ul>
+<li>游戏运动本质就是使用矩阵变换（平移、旋转、缩放）改变游戏对象的空间属性。</li>
+<li>在游戏层次视图中，游戏对象按树组织似乎天经地义。事实上，游戏对象是按它的空间关系组织设计。对象设计图如下：</li>
+</ul>
+<p><img src="http://sentimentalswordsman.github.io/img/3dg-hw3/1.png" alt></p>
+<h3 id="基于职责的设计与游戏的MVC总体框架"><a href="#基于职责的设计与游戏的MVC总体框架" class="headerlink" title="基于职责的设计与游戏的MVC总体框架"></a>基于职责的设计与游戏的MVC总体框架</h3><ul>
+<li>面向对象设计的核心：<strong>基于职责的设计</strong>。即：模拟人类组织管理社会的方法，根据不同人拥有资源、知识与技能的不同，赋予不同人（或对象）特定的职责。再按一定结构（如设计模式），将它们组织起来。</li>
+<li><strong>门面（Fasàde）模式</strong>：外部与一个子系统的通信必须通过一个统一的门面(Facade)对象进行。</li>
+<li><strong>MVC</strong> 是界面人机交互程序设计的一种架构模式。它把程序分为三个部分：<ul>
+<li>模型（Model）：数据对象及关系<ul>
+<li>游戏对象、空间关系</li>
+</ul>
+</li>
+<li>控制器（Controller）：接受用户事件，控制模型的变化<ul>
+<li>一个场景一个主控制器</li>
+<li>至少实现与玩家交互的接口（IPlayerAction）</li>
+<li>实现或管理运动</li>
+</ul>
+</li>
+<li>界面（View）：显示模型，将人机交互事件交给控制器处理<ul>
+<li>处收 Input 事件</li>
+<li>渲染 GUI ，接收事件</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="作业与练习"><a href="#作业与练习" class="headerlink" title="作业与练习"></a>作业与练习</h2><h3 id="1-简答题"><a href="#1-简答题" class="headerlink" title="1 简答题"></a>1 简答题</h3><h4 id="Question-1-1"><a href="#Question-1-1" class="headerlink" title="Question 1.1"></a>Question 1.1</h4><blockquote>
+<p>游戏对象运动的本质是什么？</p>
+</blockquote>
+<p>游戏对象运动的本质是游戏对象的相对位置的改变。</p>
+<p>实现游戏对象运动的方法一般是矩阵的变化，如平移、旋转、缩放等。</p>
+<h4 id="Question-1-2"><a href="#Question-1-2" class="headerlink" title="Question 1.2"></a>Question 1.2</h4><blockquote>
+<p>请用三种方法以上方法，实现物体的抛物线运动。</p>
+</blockquote>
+<p>方法一：transform.position</p>
+<p>结合方程运用Transform，直接改变物体的位置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">using System.Collections;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line">public class test : MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    // x=0</span><br><span class="line">    // z=v*t</span><br><span class="line">    // y=4-a*t*t</span><br><span class="line">    private float x;</span><br><span class="line">    private float y;</span><br><span class="line">    private float z;</span><br><span class="line">    private float v;</span><br><span class="line">    private float a;</span><br><span class="line">    private float t;</span><br><span class="line">    // Start is called before the first frame update</span><br><span class="line">    void Start()</span><br><span class="line">    &#123;</span><br><span class="line">        x = 0;</span><br><span class="line">        y = 4;</span><br><span class="line">        z = 0;</span><br><span class="line">        v = (float)1.6;</span><br><span class="line">        a = (float)0.3;</span><br><span class="line">        t = 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Update is called once per frame</span><br><span class="line">    void Update()</span><br><span class="line">    &#123;</span><br><span class="line">        this.transform.position = new Vector3(x, y, z);</span><br><span class="line">        t += Time.deltaTime;</span><br><span class="line">        z = v * t;</span><br><span class="line">        y = 4 - a * t * t;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法二：transform.Translate</p>
+<p>运用Translate方法分解抛物线运动的位移。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">using System.Collections;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line">public class test : MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    private float vx;</span><br><span class="line">    private float vy;</span><br><span class="line">    private float a;</span><br><span class="line">    // Start is called before the first frame update</span><br><span class="line">    void Start()</span><br><span class="line">    &#123;</span><br><span class="line">        vx = (float)1.6;</span><br><span class="line">        a = (float)0.3;</span><br><span class="line">        vy = 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Update is called once per frame</span><br><span class="line">    void Update()</span><br><span class="line">    &#123;</span><br><span class="line">        vy -= a * Time.deltaTime;</span><br><span class="line">        this.transform.Translate(Vector3.forward * vx * Time.deltaTime);</span><br><span class="line">        this.transform.Translate(Vector3.up * vy * Time.deltaTime);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法三：Vector3.Slerp</p>
+<p>此方法用于返回参数点一到参数点二的球形插值向量，参数t范围为[0,1]。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">using System.Collections;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line">public class test : MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    Vector3 v1 = new Vector3(0, 0, 2);</span><br><span class="line">    Vector3 v2 = new Vector3(0, 0, 0);</span><br><span class="line"></span><br><span class="line">    // Start is called before the first frame update</span><br><span class="line">    void Start()</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line">            </span><br><span class="line">    // Update is called once per frame</span><br><span class="line">    void Update ()</span><br><span class="line">    &#123;</span><br><span class="line">        Vector3 p = transform.position + v1 * Time.deltaTime - v2 * Time.deltaTime;</span><br><span class="line">        v2.y += 1 * (Time.deltaTime);</span><br><span class="line">        p.y -= 0.5F * 1 * (Time.deltaTime) * (Time.deltaTime);</span><br><span class="line">        this.transform.position = Vector3.Slerp(transform.position, p, 1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>方法四：Rigidbody</p>
+<p>将Object定义为刚体，赋予重力和初速度属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">using System.Collections;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line">public class test : MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    // Use this for initialization</span><br><span class="line">    void Start ()</span><br><span class="line">    &#123; </span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    // Update is called once per frame</span><br><span class="line">    void Update ()</span><br><span class="line">    &#123;</span><br><span class="line">        Rigidbody r = this.gameObject.AddComponent&lt;Rigidbody&gt;();</span><br><span class="line">        r.useGravity = true;</span><br><span class="line">        r.velocity = Vector3.left * 2;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="Question-1-3"><a href="#Question-1-3" class="headerlink" title="Question 1.3"></a>Question 1.3</h4><blockquote>
+<p>写一个程序，实现一个完整的太阳系， 其他星球围绕太阳的转速必须不一样，且不在一个法平面上。</p>
+</blockquote>
+<p>首先创建出九个星体，即太阳、月亮、地球即其他七个行星，设置好其初始位置和大小，完成结果如下图所示：</p>
+<p><img src="http://sentimentalswordsman.github.io/img/3dg-hw3/2.png" alt></p>
+<p>其次是设置星体的自转，自转速度是随机的，代码编写完成后将脚本挂载到行星上：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">using System.Collections;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using UnityEngine;</span><br><span class="line">//  完成自转过程</span><br><span class="line">public class Rotation : MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">	// Use this for initialization</span><br><span class="line">	void Start ()</span><br><span class="line">    &#123;</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">	// Update is called once per frame</span><br><span class="line">	void Update ()</span><br><span class="line">    &#123;</span><br><span class="line">        //  自转速度随机</span><br><span class="line">        this.transform.RotateAround(this.transform.position, Vector3.up, Random.Range(1, 2));</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第三，是设置太阳系八大行星的公转，设定每个行星的公转法平面为（0，ry，rz），且 ry，rz 以及公转速度 v 是随机取定的，需把旋转中心设置为太阳；除此之外，还需添加、设置TrailRenderer，使星体的运动轨迹更为清晰：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">using System.Collections;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line">public class Revolution : MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    //  设定每个行星的公转法平面为（0，ry，rz）</span><br><span class="line">    //  ry，rz，公转速度v 随机取定</span><br><span class="line">    public Transform center;</span><br><span class="line">    public float v;</span><br><span class="line">    float ry, rz;</span><br><span class="line">    // Use this for initialization  </span><br><span class="line">    void Start()</span><br><span class="line">    &#123;</span><br><span class="line">        //  设置轨道性质</span><br><span class="line">        this.transform.gameObject.GetComponent&lt;TrailRenderer&gt;();</span><br><span class="line">        TrailRenderer tr = this.transform.gameObject.GetComponent&lt;TrailRenderer&gt;();</span><br><span class="line">        tr.time = 7;</span><br><span class="line">        tr.startWidth = 0.01f;</span><br><span class="line">        tr.endWidth = 0.01f;</span><br><span class="line">        tr.material = new Material(Shader.Find(&quot;Sprites/Default&quot;));</span><br><span class="line">        tr.startColor = Color.blue;</span><br><span class="line">        tr.endColor = Color.green;</span><br><span class="line">        //  设置公转速度和公转法平面</span><br><span class="line">        v = Random.Range(60, 100);</span><br><span class="line">        ry = Random.Range(15, 45);</span><br><span class="line">        rz = Random.Range(15, 45);</span><br><span class="line">    &#125;</span><br><span class="line">    // Update is called once per frame  </span><br><span class="line">    void Update()</span><br><span class="line">    &#123;</span><br><span class="line">        this.transform.RotateAround(center.position, new Vector3(0, ry, rz), v * Time.deltaTime);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第四，是设置月球相对于地球进行的公转，需把旋转中心设置为地球，且月亮是归属于地球的子对象：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">using System.Collections;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line">public class Moon_revolution : MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    //  设定月球公转法平面为（0，ry，rz）</span><br><span class="line">    //  ry，rz，公转速度v 随机取定</span><br><span class="line">    public Transform center;</span><br><span class="line">    public float v;</span><br><span class="line">    float ry, rz;</span><br><span class="line">    // Use this for initialization  </span><br><span class="line">    void Start()</span><br><span class="line">    &#123;</span><br><span class="line">        v = Random.Range(100, 120);</span><br><span class="line">        ry = Random.Range(15, 25);</span><br><span class="line">        rz = Random.Range(15, 25);</span><br><span class="line">    &#125;</span><br><span class="line">    // Update is called once per frame  </span><br><span class="line">    void Update()</span><br><span class="line">    &#123;</span><br><span class="line">        this.transform.RotateAround(center.position, new Vector3(0, ry, rz), v * Time.deltaTime);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第五，是设置星空的背景，添加UI image，并放置在相对于摄像机的合适位置上：</p>
+<p><img src="http://sentimentalswordsman.github.io/img/3dg-hw3/3.png" alt></p>
+<p>运行结果截图如下：</p>
+<p><img src="http://sentimentalswordsman.github.io/img/3dg-hw3/4.png" alt></p>
+<p><strong>代码地址：</strong><a href="https://github.com/SentimentalSwordsman/3D-Game-Programming-Design/tree/master/homework3/SolarSystem" target="_blank" rel="noopener">https://github.com/SentimentalSwordsman/3D-Game-Programming-Design/tree/master/homework3/SolarSystem</a></p>
+<p><strong>视频地址：</strong><a href="https://www.bilibili.com/video/av68576152/" target="_blank" rel="noopener">https://www.bilibili.com/video/av68576152/</a></p>
+<h3 id="2-编程实践"><a href="#2-编程实践" class="headerlink" title="2 编程实践"></a>2 编程实践</h3><h4 id="2-1-游戏脚本阅读"><a href="#2-1-游戏脚本阅读" class="headerlink" title="2.1 游戏脚本阅读"></a>2.1 游戏脚本阅读</h4><blockquote>
+<p>Priests and Devils</p>
+<p>Priests and Devils is a puzzle game in which you will help the Priests and Devils to cross the river within the time limit. There are 3 priests and 3 devils at one side of the river. They all want to get to the other side of this river, but there is only one boat and this boat can only carry two persons each time. And there must be one person steering the boat from one side to the other side. In the flash game, you can click on them to move them and click the go button to move the boat to the other direction. If the priests are out numbered by the devils on either side of the river, they get killed and the game is over. You can try it in many &gt; ways. Keep all priests alive! Good luck!</p>
+</blockquote>
+<h4 id="2-2-技术要求"><a href="#2-2-技术要求" class="headerlink" title="2.2 技术要求"></a>2.2 技术要求</h4><ul>
+<li>play the game ( <a href="http://www.flash-game.net/game/2535/priests-and-devils.html" target="_blank" rel="noopener">http://www.flash-game.net/game/2535/priests-and-devils.html</a> )</li>
+<li>列出游戏中提及的事物（Objects）</li>
+<li>用表格列出玩家动作表（规则表），注意，动作越少越好</li>
+<li>请将游戏中对象做成预制</li>
+<li>在 GenGameObjects 中创建 长方形、正方形、球 及其色彩代表游戏中的对象</li>
+<li>使用 C# 集合类型 有效组织对象</li>
+<li>整个游戏仅 主摄像机 和 一个 Empty 对象，<strong>其他对象必须代码动态生成</strong>。整个游戏不许出现 Find 游戏对象， SendMessage 这类突破程序结构的通讯耦合语句</li>
+<li>请使用课件架构图编程，<strong>不接受非 MVC 结构程序</strong></li>
+<li>注意细节，例如：船未靠岸，牧师与魔鬼上下船运动中，均不能接受用户事件</li>
+</ul>
+<h4 id="2-3-游戏说明"><a href="#2-3-游戏说明" class="headerlink" title="2.3 游戏说明"></a>2.3 游戏说明</h4><p><strong>游戏规则与设定</strong></p>
+<ul>
+<li>帮助三个牧师和三个魔鬼渡河。</li>
+<li>船上最多可以载两名游戏角色。</li>
+<li>船上需要有游戏对象才可移动。</li>
+<li>当有一侧岸的魔鬼数多余牧师数时，魔鬼就会失去控制，吃掉牧师。</li>
+<li>一侧岸的魔鬼数和牧师数数量统计包括岸上的以及靠岸船上的。</li>
+<li>若有牧师被吃掉，则游戏失败。</li>
+<li>所有游戏角色都到达对岸，则游戏胜利。</li>
+</ul>
+<p><strong>游戏对象</strong></p>
+<p>船（褐色长方体），牧师（白色方块），魔鬼（黑色圆球）、岸、河</p>
+<p><strong>玩家动作表</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">玩家动作</th>
+<th>发生条件</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">上船</td>
+<td>船上有空位时，点击上船对象可以上船</td>
+</tr>
+<tr>
+<td align="center">下船</td>
+<td>船上有对象时，点击下船对象可以下船</td>
+</tr>
+<tr>
+<td align="center">开船</td>
+<td>船在一岸时点击船可以开船到另一岸</td>
+</tr>
+<tr>
+<td align="center">重新开始</td>
+<td>点击 Restart 按钮可重新开始</td>
+</tr>
+</tbody></table>
+<h4 id="2-4-完成情况"><a href="#2-4-完成情况" class="headerlink" title="2.4 完成情况"></a>2.4 完成情况</h4><p>项目结构如下：</p>
+<p><img src="http://sentimentalswordsman.github.io/img/3dg-hw3/5.png" alt="img"></p>
+<p>游戏界面如下：</p>
+<p><img src="http://sentimentalswordsman.github.io/img/3dg-hw3/6.png" alt="img"></p>
+<p><img src="http://sentimentalswordsman.github.io/img/3dg-hw3/7.png" alt="img"></p>
+<p><img src="http://sentimentalswordsman.github.io/img/3dg-hw3/8.png" alt="img"></p>
+<p><img src="http://sentimentalswordsman.github.io/img/3dg-hw3/9.png" alt="img"></p>
+<h4 id="2-5-项目设计"><a href="#2-5-项目设计" class="headerlink" title="2.5 项目设计"></a>2.5 项目设计</h4><p>代码篇幅过长，详细见代码地址。</p>
+<ul>
+<li><strong>组织游戏资源</strong><ul>
+<li>材料（Materials）</li>
+<li>预制（Resources/Prefabs）</li>
+<li>脚本（Scripts）</li>
+</ul>
+</li>
+<li><strong>创建场景启动对象和控制器</strong><ul>
+<li>构造 Main 空对象，并挂载 FirstController 代码，使得游戏加载行为在你的控制下</li>
+</ul>
+</li>
+<li><strong>Director（导演）对象与单实例模式</strong><ul>
+<li>创建 SSDirector 类</li>
+</ul>
+</li>
+<li><strong>SceneController（场记）</strong><ul>
+<li>BoatSceneController.cs</li>
+<li>CoastSceneController.cs</li>
+<li>GameObjects.cs</li>
+<li>Moveable.cs</li>
+</ul>
+</li>
+</ul>
+<p>如：GameObjects.cs</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line">using System.Collections;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using UnityEngine;</span><br><span class="line">using Interfaces;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">public class GameObjects</span><br><span class="line">&#123;</span><br><span class="line">    readonly GameObject Instance;</span><br><span class="line">    readonly Moveable Move;</span><br><span class="line">    readonly ClickGUI clickGUI;</span><br><span class="line">    readonly int type;</span><br><span class="line">    bool onBoat = false;</span><br><span class="line">    CoastSceneController coastScene;</span><br><span class="line"></span><br><span class="line">    public GameObjects(int num)</span><br><span class="line">    &#123;</span><br><span class="line">        //  1-p, 0-d</span><br><span class="line">        if (num == 1)</span><br><span class="line">        &#123;</span><br><span class="line">            Instance = Object.Instantiate(Resources.Load&lt;GameObject&gt;(&quot;Prefabs/priest&quot;), Vector3.zero, Quaternion.identity);</span><br><span class="line">            type = 1;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            Instance = Object.Instantiate(Resources.Load&lt;GameObject&gt;(&quot;Prefabs/devil&quot;), Vector3.zero, Quaternion.identity);</span><br><span class="line">            type = 0;</span><br><span class="line">        &#125;</span><br><span class="line">        Move = Instance.AddComponent(typeof(Moveable)) as Moveable;</span><br><span class="line">        clickGUI = Instance.AddComponent(typeof(ClickGUI)) as ClickGUI;</span><br><span class="line">        clickGUI.setController(this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setName(int num)</span><br><span class="line">    &#123;</span><br><span class="line">        if(num &lt; 3)</span><br><span class="line">        &#123;</span><br><span class="line">            num++;</span><br><span class="line">            Instance.name = &quot;priest&quot; + num;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            num -= 2;</span><br><span class="line">            Instance.name = &quot;devil&quot; + num;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setPosition(Vector3 pos)</span><br><span class="line">    &#123;</span><br><span class="line">        Instance.transform.position = pos;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void moveToPosition(Vector3 dest)</span><br><span class="line">    &#123;</span><br><span class="line">        Move.SetDest(dest);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int getType()</span><br><span class="line">    &#123;</span><br><span class="line">        return type;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public string getName()</span><br><span class="line">    &#123;</span><br><span class="line">        return Instance.name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void getOnBoat(BoatSceneController boat)</span><br><span class="line">    &#123;</span><br><span class="line">        coastScene = null;</span><br><span class="line">        Instance.transform.parent = boat.GetGameobject().transform;</span><br><span class="line">        onBoat = true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void getOnCoast(CoastSceneController coasti)</span><br><span class="line">    &#123;</span><br><span class="line">        coastScene = coasti;</span><br><span class="line">        Instance.transform.parent = null;</span><br><span class="line">        onBoat = false;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public bool isOnBoat()</span><br><span class="line">    &#123;</span><br><span class="line">        return onBoat;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public CoastSceneController getCoastSceneController()</span><br><span class="line">    &#123;</span><br><span class="line">        return coastScene;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void Reset()</span><br><span class="line">    &#123;</span><br><span class="line">        //  reset后回到岸上</span><br><span class="line">        Move.Reset();</span><br><span class="line">        coastScene = (SSDirector.getInstance().currentScenceController as FirstController).coast1;</span><br><span class="line">        getOnCoast(coastScene);</span><br><span class="line">        setPosition(coastScene.getEmptyPosition());</span><br><span class="line">        coastScene.getOnCoast(this);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>接口（Interface）</li>
+</ul>
+<h4 id="2-6-项目地址"><a href="#2-6-项目地址" class="headerlink" title="2.6 项目地址"></a>2.6 项目地址</h4><p><strong>代码地址：</strong><a href="https://github.com/SentimentalSwordsman/3D-Game-Programming-Design/tree/master/homework3/PriestsAndDevils" target="_blank" rel="noopener">https://github.com/SentimentalSwordsman/3D-Game-Programming-Design/tree/master/homework3/PriestsAndDevils</a></p>
+<p><strong>视频地址：</strong><a href="https://www.bilibili.com/video/av68576206/" target="_blank" rel="noopener">https://www.bilibili.com/video/av68576206/</a></p>
+<h3 id="3-思考题"><a href="#3-思考题" class="headerlink" title="3 思考题"></a>3 思考题</h3><blockquote>
+<p>使用向量与变换，实现并扩展 Tranform 提供的方法，如 Rotate、RotateAround 等</p>
+</blockquote>
+<p>Rotate:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">using System.Collections;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line">public class Rotate : MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    // Start is called before the first frame update</span><br><span class="line">    void Start()</span><br><span class="line">    &#123;</span><br><span class="line">        float a = 10f;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Update is called once per frame</span><br><span class="line">    void Update()</span><br><span class="line">    &#123;</span><br><span class="line">        Quaternion q = Quaternion.AngleAxis(a * Time.deltaTime, Vector3.up);</span><br><span class="line">        transform.localRotation *= q;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>RotateAround:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">using System.Collections;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using UnityEngine;</span><br><span class="line"></span><br><span class="line">public class RotateAround : MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    // Start is called before the first frame update</span><br><span class="line">    void Start()</span><br><span class="line">    &#123;</span><br><span class="line">        Vector3 v3 = Vector3(55,5,5);</span><br><span class="line">        float a = 10f;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Update is called once per frame</span><br><span class="line">    void Update()</span><br><span class="line">    &#123;</span><br><span class="line">        Quaternion T = Quaternion.LookRotation(v3 - transform.position, Vector3.up);</span><br><span class="line">        transform.rotation = Quaternion.Slerp(transform.rotation, T, Time.deltaTime * a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="https://pmlpml.github.io/unity3d-learning/03-space-and-motion" target="_blank" rel="noopener">空间与运动_教学讲义</a></p>
+<p>[2] <a href="https://docs.unity3d.com/Manual/index.html" target="_blank" rel="noopener">Maunal</a></p>
+<p>[3] <a href="http://ask.manew.com/question/37261" target="_blank" rel="noopener">Vector3.Slerp_1</a></p>
+<p>[4]  <a href="http://www.manew.com/thread-43314-1-1.html" target="_blank" rel="noopener">Vector3.Slerp_2</a></p>
+
+    </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/post/3dG4-游戏对象与图形基础/" title= "3D Game 4 - 游戏对象与图形基础">
+                    <div class="nextTitle">3D Game 4 - 游戏对象与图形基础</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/post/3dG2-离散仿真引擎基础/" title= "3D Game 2 - 离散仿真引擎基础">
+                    <div class="prevTitle">3D Game 2 - 离散仿真引擎基础</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- gitalk评论 -->
+
+    <!-- utteranc评论 -->
+
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    <!-- 
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:wen.hl@foxmail.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/CUFMHeart" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="https://cufmheart.github.io/" class="iconfont-archer weibo" target="_blank" title=weibo></a>
+            
+        
+    
+        
+    
+        
+            
+                <a href="https://cufmheart.github.io/" class="iconfont-archer douban" target="_blank" title=douban></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="https://cufmheart.github.io/" class="iconfont-archer others" target="_blank" title=others></a>
+            
+        
+    
+        
+    
+        
+            
+                <a href="https://cufmheart.github.io/" class="iconfont-archer rss" target="_blank" title=rss></a>
+            
+        
+    
+
+    </div>
+     -->
+
+    <!-- powered by Hexo  -->
+    <!-- <div class="copyright"> -->
+        <!-- <span id="hexo-power">- W -</span> -->
+        <!-- <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span> -->
+    <!-- </div> -->
+    
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+    <span id="busuanzi_container_site_pv">☺</span>
+    <!-- 
+    <span id="busuanzi_container_site_uv">:)<span id="busuanzi_value_site_uv"></span></span>
+     -->
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:40vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#空间与运动"><span class="toc-number">1.</span> <span class="toc-text">空间与运动</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#游戏的设计维度"><span class="toc-number">1.1.</span> <span class="toc-text">游戏的设计维度</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#游戏世界空间模型"><span class="toc-number">1.2.</span> <span class="toc-text">游戏世界空间模型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#坐标变化与运动"><span class="toc-number">1.3.</span> <span class="toc-text">坐标变化与运动</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于职责的设计与游戏的MVC总体框架"><span class="toc-number">1.4.</span> <span class="toc-text">基于职责的设计与游戏的MVC总体框架</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作业与练习"><span class="toc-number">2.</span> <span class="toc-text">作业与练习</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-简答题"><span class="toc-number">2.1.</span> <span class="toc-text">1 简答题</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Question-1-1"><span class="toc-number">2.1.1.</span> <span class="toc-text">Question 1.1</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Question-1-2"><span class="toc-number">2.1.2.</span> <span class="toc-text">Question 1.2</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Question-1-3"><span class="toc-number">2.1.3.</span> <span class="toc-text">Question 1.3</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-编程实践"><span class="toc-number">2.2.</span> <span class="toc-text">2 编程实践</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1-游戏脚本阅读"><span class="toc-number">2.2.1.</span> <span class="toc-text">2.1 游戏脚本阅读</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2-技术要求"><span class="toc-number">2.2.2.</span> <span class="toc-text">2.2 技术要求</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-游戏说明"><span class="toc-number">2.2.3.</span> <span class="toc-text">2.3 游戏说明</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-完成情况"><span class="toc-number">2.2.4.</span> <span class="toc-text">2.4 完成情况</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-项目设计"><span class="toc-number">2.2.5.</span> <span class="toc-text">2.5 项目设计</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-项目地址"><span class="toc-number">2.2.6.</span> <span class="toc-text">2.6 项目地址</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-思考题"><span class="toc-number">2.3.</span> <span class="toc-text">3 思考题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">3.</span> <span class="toc-text">参考资料</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 11
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/19</span><a class="archive-post-title" href= "/post/3dG11-AR-MR技术/" >3D Game 11 - AR/MR 技术</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/06</span><a class="archive-post-title" href= "/post/3dG10-游戏智能/" >3D Game 10 - 游戏智能</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/20</span><a class="archive-post-title" href= "/post/3dG9-UI系统/" >3D Game 9 - UI系统</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href= "/post/3dG8-粒子系统/" >3D Game 8 - 粒子系统</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/25</span><a class="archive-post-title" href= "/post/3dG7-模型与动画/" >3D Game 7 - 模型与动画</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span><a class="archive-post-title" href= "/post/3dG6-物理系统与碰撞/" >3D Game 6 - 物理系统与碰撞</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span><a class="archive-post-title" href= "/post/3dG5-与游戏世界交互/" >3D Game 5 - 与游戏世界交互</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href= "/post/3dG4-游戏对象与图形基础/" >3D Game 4 - 游戏对象与图形基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/20</span><a class="archive-post-title" href= "/post/3dG3-空间与运动/" >3D Game 3 - 空间与运动</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/10</span><a class="archive-post-title" href= "/post/3dG2-离散仿真引擎基础/" >3D Game 2 - 离散仿真引擎基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href= "/post/3dG1-World-of-Goo/" >3D Game 1 - World of Goo</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="3D游戏编程设计, 课程学习"><span class="iconfont-archer">&#xe606;</span>3D游戏编程设计, 课程学习</span>
+    
+        <span class="sidebar-tag-name" data-tags="3D游戏编程设计"><span class="iconfont-archer">&#xe606;</span>3D游戏编程设计</span>
+    
+        <span class="sidebar-tag-name" data-tags="课程学习"><span class="iconfont-archer">&#xe606;</span>课程学习</span>
+    
+        <span class="sidebar-tag-name" data-tags="AR/MR"><span class="iconfont-archer">&#xe606;</span>AR/MR</span>
+    
+        <span class="sidebar-tag-name" data-tags="3D-Game-Programming&Design"><span class="iconfont-archer">&#xe606;</span>3D-Game-Programming&Design</span>
+    
+        <span class="sidebar-tag-name" data-tags="SYSU-COURSE"><span class="iconfont-archer">&#xe606;</span>SYSU-COURSE</span>
+    
+        <span class="sidebar-tag-name" data-tags="SYSU-Course"><span class="iconfont-archer">&#xe606;</span>SYSU-Course</span>
+    
+        <span class="sidebar-tag-name" data-tags="-3D-Game-Programming&Design -SYSU-Course"><span class="iconfont-archer">&#xe606;</span>-3D-Game-Programming&Design -SYSU-Course</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #008B8B; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="3D游戏编程设计"><span class="iconfont-archer">&#xe60a;</span>3D游戏编程设计</span>
+    
+        <span class="sidebar-category-name" data-categories="3D-Game-Programming-Design"><span class="iconfont-archer">&#xe60a;</span>3D-Game-Programming-Design</span>
+    
+        <span class="sidebar-category-name" data-categories="3D-Game-Programming-Design"><span class="iconfont-archer">&#xe60a;</span>3D-Game-Programming-Design</span>
+    
+        <span class="sidebar-category-name" data-categories="3D-Game-Programming-Design"><span class="iconfont-archer">&#xe60a;</span>3D-Game-Programming-Design</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "CUFMH2"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+

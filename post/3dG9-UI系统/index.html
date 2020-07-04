@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="CUFMH2">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="CUFMH2">
+    
+    <meta name="keywords" content="CUFMH,cufmheart">
+    
+    <meta name="description" content>
+    <meta name="description" content="横看成岭侧成峰，远近高低各不同。不识庐山真面目，只缘身在此山中。 — 【宋】苏轼 《题西林壁》">
+<meta name="keywords" content="3D游戏编程设计,课程学习">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3D Game 9 - UI系统">
+<meta property="og:url" content="https://cufmheart.github.io/post/3dG9-UI系统/index.html">
+<meta property="og:site_name" content="CUFMH2Blog">
+<meta property="og:description" content="横看成岭侧成峰，远近高低各不同。不识庐山真面目，只缘身在此山中。 — 【宋】苏轼 《题西林壁》">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://sentimentalswordsman.github.io/img/3dg-hw9/1.png">
+<meta property="og:image" content="http://sentimentalswordsman.github.io/img/3dg-hw9/2.png">
+<meta property="og:image" content="http://sentimentalswordsman.github.io/img/3dg-hw9/3.png">
+<meta property="og:image" content="http://sentimentalswordsman.github.io/img/3dg-hw9/4.png">
+<meta property="og:updated_time" content="2020-07-04T17:32:15.034Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="3D Game 9 - UI系统">
+<meta name="twitter:description" content="横看成岭侧成峰，远近高低各不同。不识庐山真面目，只缘身在此山中。 — 【宋】苏轼 《题西林壁》">
+<meta name="twitter:image" content="http://sentimentalswordsman.github.io/img/3dg-hw9/1.png">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>3D Game 9 - UI系统 · CUFMH2Blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/avatar/icon_128x1282.png">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >CUFMH2Blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">3D Game 9 - UI系统</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>CUFMH2Blog</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:40vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.png)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            3D Game 9 - UI系统
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "3D游戏编程设计">3D游戏编程设计</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "课程学习">课程学习</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>
+                            Word count: 
+                                <span class="post-count word-count">1.4k</span>
+                            Reading time: 
+                                <span class="post-count reading-time">6 min</span>
+                        </span>
+
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer power">&#xe676;</span>
+                    <span class="post-intro-time">2019-11-20</span>
+                    
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer">&#xe604;</span>
+                            <span id="busuanzi_value_page_pv">calculating</span>
+                        </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <blockquote>
+<p><strong><em>横看成岭侧成峰，远近高低各不同。不识庐山真面目，只缘身在此山中。</em></strong></p>
+<p><em>— 【宋】苏轼 《题西林壁》</em></p>
+</blockquote>
+<a id="more"></a>
+
+<h2 id="UI-系统"><a href="#UI-系统" class="headerlink" title="UI 系统"></a>UI 系统</h2><h3 id="Unity-UI-技术概述"><a href="#Unity-UI-技术概述" class="headerlink" title="Unity UI 技术概述"></a>Unity UI 技术概述</h3><p>UI 即 <strong>User Interface（用户界面）</strong>的简称。在许多软件中，采用狭义的概念，特指窗体、面板、按钮、文本框等人们熟悉的人机交互元素，及其组织与风格（也称皮肤）。Unity UI 系统采用上述狭义概念。</p>
+<p>Unity 目前支持三套完全不同风格的 UI 系统：</p>
+<ul>
+<li>4.0 及以前 - <strong>IMGUI</strong>（Immediate Mode GUI）及时模式图形界面。它是代码驱动的 UI 系统，没有图形化设计界面，只能在 OnGUI 阶段用 GUI 系列的类绘制各种 UI 元素，因此 UI元素只能浮在游戏界面之上。</li>
+<li>5.0 及以后 - <strong>Unity GUI / UGUI</strong> 是面向对象的 UI 系统。所有 UI 元素都是游戏对象，友好的图形化设计界面， 可在场景渲染阶段渲染这些 UI 元素。</li>
+<li>2018.3 及以后 - <strong>UXML</strong>（unity 扩展标记语言）。基于 IMGUI 的 AXML 包装，方便移动应用开发者入门。</li>
+</ul>
+<h3 id="UGUI-基础"><a href="#UGUI-基础" class="headerlink" title="UGUI 基础"></a>UGUI 基础</h3><p><strong>画布</strong></p>
+<p>画布（Cavas）是绘图区域, 同时是 ui 元素的容器。 容器中 ui 元素及其子 UI 元素都将绘制在其上。 拥有Canvas组件的游戏对象都有一个画布，它空间中的子对象，如果是 UI 元素将渲染在画布上。画布区域在场景视图中显示为矩形。这使得定位UI元素变得非常容易，无需随时显示游戏运行视图。</p>
+<p> <strong>UI 布局基础</strong></p>
+<p>每个UI元素都被表示为一个矩形，为了相对于 Canvas 和 其他 UI 元素实现定位，Unity 在 Transform 基础上定义了 RectTransform （矩形变换） 支持矩形元素在 2/3D 场景中变换。</p>
+<p><strong>UI 组件与元素</strong></p>
+<p>UI 部件都是用 Script 开发的自定义组件。包括在 UI、Layout 和 Rendering 等分类。</p>
+<p><strong>圆形遮罩、动画、富文本、血条</strong></p>
+<p>圆形遮罩、动画、富文本、血条等都是菜单制作，初步理解 Text，Image，RowImage，Mask 等的基本使用技巧。</p>
+<h2 id="作业与练习：UI-效果制作"><a href="#作业与练习：UI-效果制作" class="headerlink" title="作业与练习：UI 效果制作"></a>作业与练习：UI 效果制作</h2><h3 id="作业要求"><a href="#作业要求" class="headerlink" title="作业要求"></a>作业要求</h3><p>进入 <a href="http://www.tasharen.com/?page_id=140" target="_blank" rel="noopener">NGUI</a> 官方网站，使用 UGUI 实现“<strong>Inventory 背包系统</strong>”的效果。</p>
+<h3 id="预期目标"><a href="#预期目标" class="headerlink" title="预期目标"></a>预期目标</h3><ol>
+<li>实现背包系统的右侧，即背包栏，一共3*3个格子，可以存放物品；</li>
+<li>实现背包系统的中侧，即用一个物体来表示玩家主体；</li>
+<li>实现背包系统的左侧，即佩戴栏，一共1*3个格子，可以佩戴物品；</li>
+<li>实现物品的显示，本设计中用图片代替；</li>
+<li>实现背包系统界面随鼠标移动而旋转的效果；</li>
+<li>实现物体的佩戴、摆放、替换过程。</li>
+</ol>
+<h3 id="完成情况"><a href="#完成情况" class="headerlink" title="完成情况"></a>完成情况</h3><p><strong>游戏界面1</strong></p>
+<p><img src="http://sentimentalswordsman.github.io/img/3dg-hw9/1.png" alt></p>
+<p><strong>游戏界面2</strong></p>
+<p><img src="http://sentimentalswordsman.github.io/img/3dg-hw9/2.png" alt></p>
+<p><strong>游戏界面3</strong></p>
+<p><img src="http://sentimentalswordsman.github.io/img/3dg-hw9/3.png" alt></p>
+<h3 id="项目设计"><a href="#项目设计" class="headerlink" title="项目设计"></a>项目设计</h3><p><strong>目录结构</strong></p>
+<p><img src="http://sentimentalswordsman.github.io/img/3dg-hw9/4.png" alt></p>
+<p><strong>完成步骤</strong></p>
+<ul>
+<li><p><strong>结构设计</strong>：使用背景板来构建背包系统的背景；将摄像机作为母对象，并添加EventSystem；使用普通的GameObject来表示玩家主体；使用Canvas来设置BackpackSystem；使用Grid LayOut Group部件来对背包栏和佩戴栏进行布局；用空的Image对象来表示空格子及物品。</p>
+</li>
+<li><p><strong>代码设计1</strong>：对Inventory对象添加脚本以实现随鼠标移动而旋转的效果，只需要获取界面鼠标的位置，并随之改变角度即可，代码如下所示。</p>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">using UnityEngine;</span><br><span class="line">using System.Collections;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line"></span><br><span class="line">public class Mouse : MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    Transform trans;</span><br><span class="line">    Quaternion quaternion;</span><br><span class="line">    public Vector2 lerp = Vector2.zero;</span><br><span class="line">    public Vector2 v2 = new Vector2(4f, 2f);</span><br><span class="line"></span><br><span class="line">    void Start()</span><br><span class="line">    &#123;</span><br><span class="line">        trans = transform;</span><br><span class="line">        quaternion = trans.localRotation;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void Update()</span><br><span class="line">    &#123;</span><br><span class="line">        Vector3 pos = Input.mousePosition;</span><br><span class="line">        float mywidth = Screen.width * 0.5f;</span><br><span class="line">        float myheight = Screen.height * 0.5f;</span><br><span class="line">        float x = Mathf.Clamp((pos.x - mywidth) / mywidth, -0.5f, 0.5f);</span><br><span class="line">        float y = Mathf.Clamp((pos.y - myheight) / myheight, -0.5f, 0.5f);</span><br><span class="line">        lerp = Vector2.Lerp(lerp, new Vector2(x, y), Time.deltaTime * 2f);</span><br><span class="line">        trans.localRotation = quaternion * Quaternion.Euler(-lerp.y * v2.y, -lerp.x * v2.x, 0f);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>代码设计2</strong>：对表示物体的Image对象添加脚本以实现拖拽的UI效果，需要使用到接口IBeginDragHandler、IDragHandler、IEndDragHandler，代码如下所示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br></pre></td><td class="code"><pre><span class="line">using UnityEngine;</span><br><span class="line">using UnityEngine.UI;</span><br><span class="line">using UnityEngine.EventSystems;</span><br><span class="line">using System.Collections;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line"></span><br><span class="line">public class Drag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler</span><br><span class="line">&#123;</span><br><span class="line">    Transform trans;</span><br><span class="line">    RectTransform rect_trans;</span><br><span class="line">    CanvasGroup canvas_group;</span><br><span class="line">    GameObject grid = null;</span><br><span class="line">    Color grid_color_1;</span><br><span class="line">    Color grid_color_2 = Color.grey;</span><br><span class="line">    public Vector3 v3;</span><br><span class="line"></span><br><span class="line">    void Start()</span><br><span class="line">    &#123;</span><br><span class="line">        // Debug.Log(&quot;000&quot;);</span><br><span class="line">        trans = this.transform;</span><br><span class="line">        v3 = trans.position;</span><br><span class="line">        rect_trans = this.transform as RectTransform;</span><br><span class="line">        canvas_group = GetComponent&lt;CanvasGroup&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void Update()</span><br><span class="line">    &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void OnBeginDrag(PointerEventData eventData)</span><br><span class="line">    &#123;</span><br><span class="line">        // Debug.Log(&quot;OnBeginDrag&quot;);</span><br><span class="line">        canvas_group.blocksRaycasts = false;</span><br><span class="line">        grid = eventData.pointerEnter;</span><br><span class="line">        grid_color_1 = grid.GetComponent&lt;Image&gt;().color;</span><br><span class="line">        v3 = trans.position;</span><br><span class="line">        gameObject.transform.SetAsLastSibling();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void OnDrag(PointerEventData eventData)</span><br><span class="line">    &#123;</span><br><span class="line">        // Debug.Log(&quot;OnDrag&quot;);</span><br><span class="line">        bool flag = true;</span><br><span class="line">        Vector3 mouse_position;</span><br><span class="line">        if (RectTransformUtility.ScreenPointToWorldPointInRectangle(rect_trans, eventData.position, eventData.pressEventCamera, out mouse_position))</span><br><span class="line">        &#123;</span><br><span class="line">            rect_trans.position = mouse_position;</span><br><span class="line">        &#125;</span><br><span class="line">        GameObject now_grid_p = eventData.pointerEnter;</span><br><span class="line">        if (now_grid_p == null)</span><br><span class="line">        &#123;</span><br><span class="line">            flag = false;</span><br><span class="line">        &#125;</span><br><span class="line">        else if (now_grid_p.name != &quot;bag_grid&quot;)</span><br><span class="line">        &#123;</span><br><span class="line">            flag = false;</span><br><span class="line">        &#125;</span><br><span class="line">        if (flag)</span><br><span class="line">        &#123;</span><br><span class="line">            Image pic = now_grid_p.GetComponent&lt;Image&gt;();</span><br><span class="line">            grid.GetComponent&lt;Image&gt;().color = grid_color_1;</span><br><span class="line">            if (grid != now_grid_p)</span><br><span class="line">            &#123;</span><br><span class="line">                grid.GetComponent&lt;Image&gt;().color = grid_color_1;</span><br><span class="line">                grid = now_grid_p;</span><br><span class="line">            &#125;</span><br><span class="line">            pic.color = grid_color_2;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void OnEndDrag(PointerEventData eventData)</span><br><span class="line">    &#123;</span><br><span class="line">        // Debug.Log(&quot;OnEndDrag&quot;);</span><br><span class="line">        GameObject now_grid_p = eventData.pointerEnter;</span><br><span class="line">        if (now_grid_p == null)</span><br><span class="line">        &#123;</span><br><span class="line">            trans.position = v3;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            if (now_grid_p.name == &quot;bag_grid&quot;)</span><br><span class="line">            &#123;</span><br><span class="line">                trans.position = now_grid_p.transform.position;</span><br><span class="line">                v3 = trans.position;</span><br><span class="line">                now_grid_p.GetComponent&lt;Image&gt;().color = grid_color_1;</span><br><span class="line">            &#125;</span><br><span class="line">            else</span><br><span class="line">            &#123;</span><br><span class="line">                if (now_grid_p.name == eventData.pointerDrag.name &amp;&amp; now_grid_p != eventData.pointerDrag)</span><br><span class="line">                &#123;</span><br><span class="line">                    Vector3 target_pos = now_grid_p.transform.position;</span><br><span class="line">                    now_grid_p.transform.position = v3;</span><br><span class="line">                    trans.position = target_pos;</span><br><span class="line">                    v3 = trans.position;</span><br><span class="line">                &#125;</span><br><span class="line">                else</span><br><span class="line">                &#123;</span><br><span class="line">                    trans.position = v3;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        grid.GetComponent&lt;Image&gt;().color = grid_color_1;</span><br><span class="line">        canvas_group.blocksRaycasts = true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h4 id="项目地址"><a href="#项目地址" class="headerlink" title="项目地址"></a>项目地址</h4><p><strong>代码地址：</strong><a href="https://github.com/SentimentalSwordsman/3D-Game-Programming-Design/tree/master/homework9/" target="_blank" rel="noopener">https://github.com/SentimentalSwordsman/3D-Game-Programming-Design/tree/master/homework9/</a></p>
+<p><strong>视频地址：</strong><a href="https://www.bilibili.com/video/av76655299/" target="_blank" rel="noopener">https://www.bilibili.com/video/av76655299/</a></p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] <a href="https://pmlpml.github.io/unity3d-learning/09-ui.html" target="_blank" rel="noopener">UI系统_教学讲义</a></p>
+<p>[2] <a href="https://docs.unity3d.com/Manual/index.html" target="_blank" rel="noopener">Maunal</a></p>
+<p>[3]  <a href="https://docs.unity3d.com/Manual/UISystem.html" target="_blank" rel="noopener">https://docs.unity3d.com/Manual/UISystem.html</a></p>
+
+    </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="next">
+            
+                <div class="nextSlogan">Next Post</div>
+                <a href= "/post/3dG10-游戏智能/" title= "3D Game 10 - 游戏智能">
+                    <div class="nextTitle">3D Game 10 - 游戏智能</div>
+                </a>
+            
+        </li>
+        <li class="previous">
+            
+                <div class="prevSlogan">Previous Post</div>
+                <a href= "/post/3dG8-粒子系统/" title= "3D Game 8 - 粒子系统">
+                    <div class="prevTitle">3D Game 8 - 粒子系统</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- gitalk评论 -->
+
+    <!-- utteranc评论 -->
+
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    <!-- 
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:wen.hl@foxmail.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/CUFMHeart" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="https://cufmheart.github.io/" class="iconfont-archer weibo" target="_blank" title=weibo></a>
+            
+        
+    
+        
+    
+        
+            
+                <a href="https://cufmheart.github.io/" class="iconfont-archer douban" target="_blank" title=douban></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="https://cufmheart.github.io/" class="iconfont-archer others" target="_blank" title=others></a>
+            
+        
+    
+        
+    
+        
+            
+                <a href="https://cufmheart.github.io/" class="iconfont-archer rss" target="_blank" title=rss></a>
+            
+        
+    
+
+    </div>
+     -->
+
+    <!-- powered by Hexo  -->
+    <!-- <div class="copyright"> -->
+        <!-- <span id="hexo-power">- W -</span> -->
+        <!-- <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span> -->
+    <!-- </div> -->
+    
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+    <span id="busuanzi_container_site_pv">☺</span>
+    <!-- 
+    <span id="busuanzi_container_site_uv">:)<span id="busuanzi_value_site_uv"></span></span>
+     -->
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:40vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#UI-系统"><span class="toc-number">1.</span> <span class="toc-text">UI 系统</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Unity-UI-技术概述"><span class="toc-number">1.1.</span> <span class="toc-text">Unity UI 技术概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UGUI-基础"><span class="toc-number">1.2.</span> <span class="toc-text">UGUI 基础</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作业与练习：UI-效果制作"><span class="toc-number">2.</span> <span class="toc-text">作业与练习：UI 效果制作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#作业要求"><span class="toc-number">2.1.</span> <span class="toc-text">作业要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#预期目标"><span class="toc-number">2.2.</span> <span class="toc-text">预期目标</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#完成情况"><span class="toc-number">2.3.</span> <span class="toc-text">完成情况</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#项目设计"><span class="toc-number">2.4.</span> <span class="toc-text">项目设计</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#项目地址"><span class="toc-number">2.4.1.</span> <span class="toc-text">项目地址</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考资料"><span class="toc-number">3.</span> <span class="toc-text">参考资料</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 11
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/19</span><a class="archive-post-title" href= "/post/3dG11-AR-MR技术/" >3D Game 11 - AR/MR 技术</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/06</span><a class="archive-post-title" href= "/post/3dG10-游戏智能/" >3D Game 10 - 游戏智能</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/20</span><a class="archive-post-title" href= "/post/3dG9-UI系统/" >3D Game 9 - UI系统</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href= "/post/3dG8-粒子系统/" >3D Game 8 - 粒子系统</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/25</span><a class="archive-post-title" href= "/post/3dG7-模型与动画/" >3D Game 7 - 模型与动画</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span><a class="archive-post-title" href= "/post/3dG6-物理系统与碰撞/" >3D Game 6 - 物理系统与碰撞</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span><a class="archive-post-title" href= "/post/3dG5-与游戏世界交互/" >3D Game 5 - 与游戏世界交互</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href= "/post/3dG4-游戏对象与图形基础/" >3D Game 4 - 游戏对象与图形基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/20</span><a class="archive-post-title" href= "/post/3dG3-空间与运动/" >3D Game 3 - 空间与运动</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/10</span><a class="archive-post-title" href= "/post/3dG2-离散仿真引擎基础/" >3D Game 2 - 离散仿真引擎基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href= "/post/3dG1-World-of-Goo/" >3D Game 1 - World of Goo</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="3D游戏编程设计, 课程学习"><span class="iconfont-archer">&#xe606;</span>3D游戏编程设计, 课程学习</span>
+    
+        <span class="sidebar-tag-name" data-tags="3D游戏编程设计"><span class="iconfont-archer">&#xe606;</span>3D游戏编程设计</span>
+    
+        <span class="sidebar-tag-name" data-tags="课程学习"><span class="iconfont-archer">&#xe606;</span>课程学习</span>
+    
+        <span class="sidebar-tag-name" data-tags="AR/MR"><span class="iconfont-archer">&#xe606;</span>AR/MR</span>
+    
+        <span class="sidebar-tag-name" data-tags="3D-Game-Programming&Design"><span class="iconfont-archer">&#xe606;</span>3D-Game-Programming&Design</span>
+    
+        <span class="sidebar-tag-name" data-tags="SYSU-COURSE"><span class="iconfont-archer">&#xe606;</span>SYSU-COURSE</span>
+    
+        <span class="sidebar-tag-name" data-tags="SYSU-Course"><span class="iconfont-archer">&#xe606;</span>SYSU-Course</span>
+    
+        <span class="sidebar-tag-name" data-tags="-3D-Game-Programming&Design -SYSU-Course"><span class="iconfont-archer">&#xe606;</span>-3D-Game-Programming&Design -SYSU-Course</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #008B8B; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="3D游戏编程设计"><span class="iconfont-archer">&#xe60a;</span>3D游戏编程设计</span>
+    
+        <span class="sidebar-category-name" data-categories="3D-Game-Programming-Design"><span class="iconfont-archer">&#xe60a;</span>3D-Game-Programming-Design</span>
+    
+        <span class="sidebar-category-name" data-categories="3D-Game-Programming-Design"><span class="iconfont-archer">&#xe60a;</span>3D-Game-Programming-Design</span>
+    
+        <span class="sidebar-category-name" data-categories="3D-Game-Programming-Design"><span class="iconfont-archer">&#xe60a;</span>3D-Game-Programming-Design</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "CUFMH2"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
