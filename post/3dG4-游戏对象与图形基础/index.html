@@ -442,7 +442,6 @@ height:40vh;
 <p><em>— Steve Jobs, Stanford Report, June 14, 2005</em></p>
 </blockquote>
 <a id="more"></a>
-
 <h2 id="游戏对象与图形基础"><a href="#游戏对象与图形基础" class="headerlink" title="游戏对象与图形基础"></a>游戏对象与图形基础</h2><h3 id="数字游戏原型设计"><a href="#数字游戏原型设计" class="headerlink" title="数字游戏原型设计"></a>数字游戏原型设计</h3><p><strong>数字原型</strong>是可玩的，因此可以通过玩家测试，建立以数据为基础的分析与研究，持续改进游戏。</p>
 <ul>
 <li>机制与动态：规则的复杂性、玩家成长曲线等基于数字的分析</li>
@@ -517,12 +516,9 @@ height:40vh;
 </li>
 <li><p>游戏物体一般有如下共有属性：Active、Name、Tag、Layer、transForm等。</p>
 </li>
-<li><p>游戏对象的外观和内在逻辑设计可以通过添加组件来实现。</p>
-</li>
-<li><p>游戏对象的行为可以通过添加脚本来完成。</p>
-</li>
-<li><p>游戏对象的实例化可以在图形界面中完成，也可以在编辑代码时完成。</p>
-</li>
+<li>游戏对象的外观和内在逻辑设计可以通过添加组件来实现。</li>
+<li>游戏对象的行为可以通过添加脚本来完成。</li>
+<li>游戏对象的实例化可以在图形界面中完成，也可以在编辑代码时完成。</li>
 </ul>
 <h3 id="2-编程实践"><a href="#2-编程实践" class="headerlink" title="2 编程实践"></a>2 编程实践</h3><h4 id="2-1-技术要求"><a href="#2-1-技术要求" class="headerlink" title="2.1 技术要求"></a>2.1 技术要求</h4><p>牧师与魔鬼-动作分离版：设计一个裁判类，当游戏达到结束条件时，通知场景控制器游戏结束</p>
 <h4 id="2-2-游戏说明"><a href="#2-2-游戏说明" class="headerlink" title="2.2 游戏说明"></a>2.2 游戏说明</h4><p><strong>游戏规则与设定</strong></p>
@@ -538,40 +534,42 @@ height:40vh;
 <p><strong>游戏对象</strong></p>
 <p>船（褐色长方体），牧师（白色方块），魔鬼（黑色圆球）、岸、河</p>
 <p><strong>玩家动作表</strong></p>
+<div class="table-container">
 <table>
 <thead>
 <tr>
-<th align="center">玩家动作</th>
+<th style="text-align:center">玩家动作</th>
 <th>发生条件</th>
 </tr>
 </thead>
-<tbody><tr>
-<td align="center">上船</td>
+<tbody>
+<tr>
+<td style="text-align:center">上船</td>
 <td>船上有空位时，点击上船对象可以上船</td>
 </tr>
 <tr>
-<td align="center">下船</td>
+<td style="text-align:center">下船</td>
 <td>船上有对象时，点击下船对象可以下船</td>
 </tr>
 <tr>
-<td align="center">开船</td>
+<td style="text-align:center">开船</td>
 <td>船在一岸时点击船可以开船到另一岸</td>
 </tr>
 <tr>
-<td align="center">重新开始</td>
+<td style="text-align:center">重新开始</td>
 <td>点击 Restart 按钮可重新开始</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
+</div>
 <h4 id="2-3-完成情况"><a href="#2-3-完成情况" class="headerlink" title="2.3 完成情况"></a>2.3 完成情况</h4><p>游戏界面如下：</p>
 <p><img src="//cufmheart.github.io/post/3dG4-游戏对象与图形基础/13.png" alt></p>
 <h4 id="2-4-项目设计"><a href="#2-4-项目设计" class="headerlink" title="2.4 项目设计"></a>2.4 项目设计</h4><p>首先，增加天空盒的设计、修改对象预制、改变摄像机的位置，优化游戏效果。</p>
 <p>然后是在基础MVC架构的原版本上，改为动作分离的版本。FirstController.cs、CoastSceneController.cs、BoatSceneController.cs、GameObjects.cs、InteracteGUI.cs的代码均有改动，详细可参见项目地址。而SSAction.cs中给出了动作基类、简单动作实现、顺序动作组合类实现、动作管理基类的代码。</p>
 <p>此外，上一个版本中Moveable类的功能将完全由另一种形式实现，主要体现在Action.cs中，同时需要注意该脚本需添加到 Empty 物体上，代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">using System;</span><br><span class="line">using System.Collections;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using UnityEngine;</span><br><span class="line">using Interfaces;</span><br><span class="line"></span><br><span class="line">public class Action : SSActionManager, SSActionCallback</span><br><span class="line">&#123;</span><br><span class="line">    public SSActionEventType comp = SSActionEventType.Completed;</span><br><span class="line">    //  船的运动</span><br><span class="line">    public void BoatMove(BoatSceneController boat)</span><br><span class="line">    &#123;</span><br><span class="line">        // Debug.Log(boat.GetState());</span><br><span class="line">        comp = SSActionEventType.Started;</span><br><span class="line">        CCMoveToAction action = CCMoveToAction.getAction(boat.GetDestination(), boat.GetSpeed());</span><br><span class="line">        addAction(boat.GetGameobject(), action, this);</span><br><span class="line">        boat.ChangeState();</span><br><span class="line">    &#125;</span><br><span class="line">    //  牧师和魔鬼的运动</span><br><span class="line">    public void GameObjectsMove(GameObjects Object, Vector3 dest)</span><br><span class="line">    &#123;</span><br><span class="line">        comp = SSActionEventType.Started;</span><br><span class="line">        Vector3 pos1 = Object.getPosition();</span><br><span class="line">        Vector3 pos2 = Object.getPosition();</span><br><span class="line">        if (dest.y &lt;= pos2.y)</span><br><span class="line">        &#123;</span><br><span class="line">            pos2.x = dest.x;</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            pos2.y = dest.y;</span><br><span class="line">        &#125;</span><br><span class="line">        SSAction action1 = CCMoveToAction.getAction(pos2, Object.getSpeed());</span><br><span class="line">        SSAction action2 = CCMoveToAction.getAction(dest, Object.getSpeed());</span><br><span class="line">        SSAction seq = CCSequenceAction.getAction(1, 0, new List&lt;SSAction&gt; &#123; action1, action2 &#125;);</span><br><span class="line">        this.addAction(Object.GetGameobject(), seq, this);</span><br><span class="line">    &#125;</span><br><span class="line">    //  SSActionCallback</span><br><span class="line">    public void SSActionCallback(SSAction source)</span><br><span class="line">    &#123;</span><br><span class="line">        comp = SSActionEventType.Completed;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>最后是进行裁判类的设计修改，当游戏达到结束条件时，将由裁判类通知场景控制器游戏结束。裁判类设计为 Judge 类，实现对游戏内各物体状态的读取，得到两岸和船上各自的牧师数与魔鬼数，计算得出游戏状态，并通知场景进行改变，其代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line">using System.Collections;</span><br><span class="line">using System.Collections.Generic;</span><br><span class="line">using UnityEngine;</span><br><span class="line">using Interfaces;</span><br><span class="line"></span><br><span class="line">public class Judge : MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line">    public int state;</span><br><span class="line">    InteracteGUI UserGUI;</span><br><span class="line">    private FirstController FC;</span><br><span class="line"></span><br><span class="line">    void Awake()</span><br><span class="line">    &#123;</span><br><span class="line">        state = 0; </span><br><span class="line">        UserGUI = gameObject.AddComponent&lt;InteracteGUI&gt;() as InteracteGUI;</span><br><span class="line">        FC = GetComponent&lt;FirstController&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    void Update()</span><br><span class="line">    &#123;</span><br><span class="line">        Check();</span><br><span class="line">        Debug.Log(&quot;state: &quot; + state);</span><br><span class="line">        UserGUI.SetState = state;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setState(int sta)</span><br><span class="line">    &#123;</span><br><span class="line">        state = sta;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int getState()</span><br><span class="line">    &#123;</span><br><span class="line">        return state;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void Check()</span><br><span class="line">    &#123;</span><br><span class="line">        // 0-play, 1-win, 2-lose</span><br><span class="line">        int p_coast1_num = 0;</span><br><span class="line">        int d_coast1_num = 0;</span><br><span class="line">        int p_coast2_num = 0;</span><br><span class="line">        int d_coast2_num = 0;</span><br><span class="line">        int[] coast1_arr = FC.coast1.GetobjectsNumber();</span><br><span class="line">        int[] coast2_arr = FC.coast2.GetobjectsNumber();</span><br><span class="line">        int[] boat_arr = FC.boat.GetobjectsNumber();</span><br><span class="line">        //  分别计算两侧岸上的人数</span><br><span class="line">        d_coast1_num += coast1_arr[0];</span><br><span class="line">        p_coast1_num += coast1_arr[1];</span><br><span class="line">        d_coast2_num += coast2_arr[0];</span><br><span class="line">        p_coast2_num += coast2_arr[1];</span><br><span class="line">        //  判断是否胜利</span><br><span class="line">        if (p_coast2_num + d_coast2_num == 6)      // win</span><br><span class="line">        &#123;</span><br><span class="line">            state = 1;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        //  计算船上人数，累加进累加器</span><br><span class="line">        if (FC.boat.GetState() == 1)</span><br><span class="line">        &#123;</span><br><span class="line">            d_coast1_num += boat_arr[0];</span><br><span class="line">            p_coast1_num += boat_arr[1];</span><br><span class="line">        &#125;</span><br><span class="line">        else</span><br><span class="line">        &#123;</span><br><span class="line">            d_coast2_num += boat_arr[0];</span><br><span class="line">            p_coast2_num += boat_arr[1];</span><br><span class="line">        &#125;</span><br><span class="line">        //  判断是否失败</span><br><span class="line">        //  检查coast1</span><br><span class="line">        if (p_coast1_num &lt; d_coast1_num &amp;&amp; p_coast1_num &gt; 0)</span><br><span class="line">        &#123;</span><br><span class="line">            state = 2;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        //  检查coast2</span><br><span class="line">        if (p_coast2_num &lt; d_coast2_num &amp;&amp; p_coast2_num &gt; 0)</span><br><span class="line">        &#123;</span><br><span class="line">            state = 2;</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line">        state = 0;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <h4 id="2-5-项目地址"><a href="#2-5-项目地址" class="headerlink" title="2.5 项目地址"></a>2.5 项目地址</h4><p><strong>代码地址：</strong><a href="https://github.com/CUFMHeart/3D-Game-Programming-Design/tree/master/homework4/PriestsAndDevils" target="_blank" rel="noopener">https://github.com/CUFMHeart/3D-Game-Programming-Design/tree/master/homework4/PriestsAndDevils</a></p>
 <p><strong>视频地址：</strong><a href="https://www.bilibili.com/video/av69706414/" target="_blank" rel="noopener">https://www.bilibili.com/video/av69706414/</a></p>
 <h3 id="3-材料与渲染联系"><a href="#3-材料与渲染联系" class="headerlink" title="3 材料与渲染联系"></a>3 材料与渲染联系</h3><h4 id="Question-3-1"><a href="#Question-3-1" class="headerlink" title="Question 3.1"></a>Question 3.1</h4><blockquote>
@@ -942,9 +940,33 @@ top:40vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 15
+        Total : 17
         </div>
         <!-- search  -->
         
@@ -957,6 +979,16 @@ top:40vh;
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/04</span><a class="archive-post-title" href= "/post/ST6-黑盒测试判定表法/" >ST6 - 黑盒测试判定表法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/03</span><a class="archive-post-title" href= "/post/ST5-程序控制流图/" >ST5 - 程序控制流图</a>
+        </li>
     
     
         <li class="archive-post-item">
