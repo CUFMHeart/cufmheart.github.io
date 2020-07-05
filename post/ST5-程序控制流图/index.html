@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://cufmheart.github.io/post/ST5-程序控制流图/3.png">
 <meta property="og:image" content="https://cufmheart.github.io/post/ST5-程序控制流图/4.png">
 <meta property="og:image" content="https://cufmheart.github.io/post/ST5-程序控制流图/6.png">
-<meta property="og:updated_time" content="2020-07-05T16:12:13.359Z">
+<meta property="og:updated_time" content="2020-07-05T16:18:07.839Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ST5 - 程序控制流图">
 <meta name="twitter:description" content="白盒测试按照程序内部逻辑结构和编码结构来设计测试数据并完成测试，是一种典型的动态测试方法，又称为结构测试或逻辑驱动测试。白盒测试直接分析源代码，确定测试内容和测试方法，应该覆盖全部代码、分支、路径和条件。">
@@ -442,10 +442,10 @@ height:40vh;
 <li><p>找出程序的一个独立路径集合。</p>
 </li>
 </ol>
-<p><img src="//cufmheart.github.io/post/ST5-程序控制流图/1.png" alt="image-20200703172357647" style="zoom:50%;"></p>
-<h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><h4 id="转换单条件判定结构"><a href="#转换单条件判定结构" class="headerlink" title="转换单条件判定结构"></a><strong>转换单条件判定结构</strong></h4><p><img src="//cufmheart.github.io/post/ST5-程序控制流图/2.png" alt="image-20200703180344243" style="zoom:67%;"></p>
-<h4 id="画出相应的程序控制流图"><a href="#画出相应的程序控制流图" class="headerlink" title="画出相应的程序控制流图"></a><strong>画出相应的程序控制流图</strong></h4><p><img src="//cufmheart.github.io/post/ST5-程序控制流图/3.png" alt="image-20200703181752693" style="zoom:50%;"></p>
-<h4 id="给出控制流图的邻接矩阵"><a href="#给出控制流图的邻接矩阵" class="headerlink" title="给出控制流图的邻接矩阵"></a><strong>给出控制流图的邻接矩阵</strong></h4><p><img src="//cufmheart.github.io/post/ST5-程序控制流图/4.png" alt="image-20200703183749255" style="zoom:50%;"></p>
+<p><img src="//cufmheart.github.io/post/ST5-程序控制流图/1.png" alt="image-20200703172357647" style="zoom:100%;"></p>
+<h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><h4 id="转换单条件判定结构"><a href="#转换单条件判定结构" class="headerlink" title="转换单条件判定结构"></a><strong>转换单条件判定结构</strong></h4><p><img src="//cufmheart.github.io/post/ST5-程序控制流图/2.png" alt="image-20200703180344243" style="zoom:100%;"></p>
+<h4 id="画出相应的程序控制流图"><a href="#画出相应的程序控制流图" class="headerlink" title="画出相应的程序控制流图"></a><strong>画出相应的程序控制流图</strong></h4><p><img src="//cufmheart.github.io/post/ST5-程序控制流图/3.png" alt="image-20200703181752693" style="zoom:100%;"></p>
+<h4 id="给出控制流图的邻接矩阵"><a href="#给出控制流图的邻接矩阵" class="headerlink" title="给出控制流图的邻接矩阵"></a><strong>给出控制流图的邻接矩阵</strong></h4><p><img src="//cufmheart.github.io/post/ST5-程序控制流图/4.png" alt="image-20200703183749255" style="zoom:100%;"></p>
 <h4 id="计算-McCabe-环形复杂度"><a href="#计算-McCabe-环形复杂度" class="headerlink" title="计算 McCabe 环形复杂度"></a><strong>计算 McCabe 环形复杂度</strong></h4><p>McCabe 环路复杂度为程序逻辑复杂性提供定量测度。该度量用于计算程序的基本独立路径数目，也即是确保所有语句至少执行一次的起码测试数量。</p>
 <p>有以下三种方法计算环路复杂度：</p>
 <ol>
@@ -453,7 +453,7 @@ height:40vh;
 <p>V(G) = 12-9+2 = 5</p>
 </li>
 <li><p>平面流图中区域的数量对应于环路复杂度</p>
-<p><img src="//cufmheart.github.io/post/ST5-程序控制流图/6.png" alt="image-20200703191303994" style="zoom:40%;"></p>
+<p><img src="//cufmheart.github.io/post/ST5-程序控制流图/6.png" alt="image-20200703191303994" style="zoom:100%;"></p>
 <p>V(G) = 5</p>
 </li>
 <li><p>给定流图 G 的环路复杂度 V(G)，定义为 V(G) = d +1；d 是流图 G 中单判定结点的数量</p>
@@ -635,10 +635,6 @@ top:40vh;
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-panel-archives">
     <!-- 在ejs中将archive按照时间排序 -->
-    
-    
-    
-    
     
     
     
@@ -999,24 +995,7 @@ jsonContent:
     
         <script src="/scripts/share.js" async></script>    
      
-    <script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
-</body>
+    </body>
 </html>
 
 
