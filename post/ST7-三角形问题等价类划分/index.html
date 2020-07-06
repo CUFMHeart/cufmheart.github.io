@@ -20,17 +20,22 @@
     <meta name="keywords" content="CUFMH,cufmheart">
     
     <meta name="description" content>
-    <meta property="og:type" content="website">
-<meta property="og:title" content="CUFMH2Blog">
-<meta property="og:url" content="https://cufmheart.github.io/archives/2020/05/index.html">
+    <meta name="description" content="等价类划分是一种典型的黑盒测试方法。等价类划分方法完全不考虑被测程序的内部结构，只依据程序的规格说明来设计测试用例。">
+<meta name="keywords" content="SYSU-Course,Software-Testing">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ST7 - 三角形问题等价类划分">
+<meta property="og:url" content="https://cufmheart.github.io/post/ST7-三角形问题等价类划分/index.html">
 <meta property="og:site_name" content="CUFMH2Blog">
+<meta property="og:description" content="等价类划分是一种典型的黑盒测试方法。等价类划分方法完全不考虑被测程序的内部结构，只依据程序的规格说明来设计测试用例。">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-07-06T17:03:41.981Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CUFMH2Blog">
+<meta name="twitter:title" content="ST7 - 三角形问题等价类划分">
+<meta name="twitter:description" content="等价类划分是一种典型的黑盒测试方法。等价类划分方法完全不考虑被测程序的内部结构，只依据程序的规格说明来设计测试用例。">
     <meta http-equiv="Cache-control" content="no-cache">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title>CUFMH2Blog</title>
+    <title>ST7 - 三角形问题等价类划分 · CUFMH2Blog</title>
     <style type="text/css">
     @font-face {
         font-family: 'Oswald-Regular';
@@ -211,12 +216,23 @@
 </head>
 
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="read-progress"></div>
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >CUFMH2Blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">ST7 - 三角形问题等价类划分</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>CUFMH2Blog</a>
 </header>
@@ -228,24 +244,83 @@
 
 
 
+
+height:40vh;
 ">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
     <div class="site-intro-placeholder"></div>
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.png)"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
+            
+            ST7 - 三角形问题等价类划分
+            <!-- 404 -->
             
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "SYSU-Course">SYSU-Course</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "Software-Testing">Software-Testing</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>
+                            Word count: 
+                                <span class="post-count word-count">767</span>
+                            Reading time: 
+                                <span class="post-count reading-time">3 min</span>
+                        </span>
+
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer power">&#xe676;</span>
+                    <span class="post-intro-time">2020-07-04</span>
+                    
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer">&#xe604;</span>
+                            <span id="busuanzi_value_page_pv">calculating</span>
+                        </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+
+                </div>
+            </div>
         
     </div>
 </div>
@@ -346,72 +421,231 @@
 </script>        
         <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
         <div class="container container-unloaded">
-            <main class="main index-page">
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/post/ST2-敏捷宣言12原则/" >
-            
-                <span>ST2 - 敏捷宣言 12 原则</span>
-        </a>
-        <div class="abstract-content">
-            <p>在敏捷宣言遵循的 12 条原则中挑选 1 条原则进行风险评估。</p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/15</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "SYSU-Course">SYSU-Course</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Software-Testing">Software-Testing</a>
-    
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>等价类划分是一种典型的黑盒测试方法。等价类划分方法完全不考虑被测程序的内部结构，只依据程序的规格说明来设计测试用例。</p>
+<a id="more"></a>
+<h3 id="作业内容"><a href="#作业内容" class="headerlink" title="作业内容"></a>作业内容</h3><p>构造下述三角形问题的弱健壮的等价类测试用例。</p>
+<p>三角形问题：输入三个不超过100的正整数作为三角形的三条边，判断三角形是等边三角形、等腰不等边三角形、完全不等边三角形还是不能构成三角形。</p>
+<h3 id="内容说明"><a href="#内容说明" class="headerlink" title="内容说明"></a>内容说明</h3><p>等价类的划分：</p>
+<ul>
+<li>一个输入等价类是指程序输入域的某个子集，在该子集中，各个输入数据对于揭露程序中的错误是等效的。测试某一个等价类的代表值就等同于对这个等价类的其它值的测试。</li>
+<li>等价类的划分有两种不同的情况：<ul>
+<li>有效等价类：对于程序规格说明来说是合理的、有意义的输入数据构成的集合。</li>
+<li>无效等价类：对于程序规格说明来说是不合理的、无意义的输入数据构成的集合。</li>
+</ul>
+</li>
+<li>设计测试用例时，通常要求同时考虑有效等价类和无效等价类的用例设计。<ul>
+<li>这一类测试称为健壮性测试。</li>
+</ul>
+</li>
+</ul>
+<p>弱/强、一般/健壮的等价类测试分类：</p>
+<ul>
+<li>弱 (weak) 等价类测试<ul>
+<li>针对单缺陷的等价类测试用例设计。</li>
+<li>单缺陷：在同一输入条件下失效大概率由单个缺陷引起。</li>
+</ul>
+</li>
+<li>强 (strong) 等价类测试<ul>
+<li>针对多缺陷的等价类测试用例设计。</li>
+</ul>
+</li>
+<li>一般 (normal) 等价类测试<ul>
+<li>只覆盖有效等价类的测试用例设计。</li>
+</ul>
+</li>
+<li>健壮 (robust) 等价类测试<ul>
+<li>同时覆盖有效等价类和无效等价类的测试用例设计。</li>
+<li>健壮性：软件在异常情况下还能正常运行的能力。健壮性 包括容错能力和异常恢复能力。容错性测试通常构造一些 不合理的输入来诱导软件出错。</li>
+</ul>
+</li>
+</ul>
+<h3 id="解答"><a href="#解答" class="headerlink" title="解答"></a>解答</h3><p>定义等价类如下：</p>
+<ul>
+<li>R1 = {<a, b, c>: the triangle with sides a, b, and c is equilateral} </a,></li>
+<li>R2 = {<a, b, c>: the triangle with sides a, b, and c is isosceles}</a,></li>
+<li>R3 = {<a, b, c>: the triangle with sides a, b, and c is scalene}</a,></li>
+<li>R4 = {<a, b, c>: sides a, b, and c do not form a triangle}</a,></li>
+</ul>
+<p>构造等价类的测试用例：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Test Case</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>Expected Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WN1</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>Equilateral</td>
+</tr>
+<tr>
+<td>WN2</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+<td>Isosceles</td>
+</tr>
+<tr>
+<td>WN3</td>
+<td>2</td>
+<td>3</td>
+<td>2</td>
+<td>Isosceles</td>
+</tr>
+<tr>
+<td>WN4</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>Isosceles</td>
+</tr>
+<tr>
+<td>WN5</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>Scalene</td>
+</tr>
+<tr>
+<td>WN6</td>
+<td>4</td>
+<td>1</td>
+<td>2</td>
+<td>Not a triangle</td>
+</tr>
+</tbody>
+</table>
 </div>
-            
-        </div>
-    </article>
-    
-    
-    
-    
-    
-    
-    <article class="index-post">
-        <a class="abstract-title" href = "/post/ST1-原型方法与生命周期/" >
-            
-                <span>ST1 - 原型方法与生命周期</span>
-        </a>
-        <div class="abstract-content">
-            <p>正确理解原型方法对软件生命周期不同阶段的支持，说明：辅助或代替分析阶段；辅助设计阶段；代替分析与设计阶段；代替分析、设计和实现阶段；代替全部开发阶段所对应的开发活动执行时间顺序。</p>
-        </div>
-        <div class="abstract-post-meta">
-            <!-- date  -->
-            <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/05/01</span>
-            </div>
-            <!-- tags  -->
-            
-            <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "SYSU-Course">SYSU-Course</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-tags = "Software-Testing">Software-Testing</a>
-    
+<p>考虑无效值，再构造以下弱健壮性等价类测试用例：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Test Case</th>
+<th>a</th>
+<th>b</th>
+<th>c</th>
+<th>Expected Output</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>WN1</td>
+<td>-1</td>
+<td>5</td>
+<td>5</td>
+<td>Value of a is out of range</td>
+</tr>
+<tr>
+<td>WN2</td>
+<td>5</td>
+<td>-1</td>
+<td>5</td>
+<td>Value of b is out of range</td>
+</tr>
+<tr>
+<td>WN3</td>
+<td>5</td>
+<td>5</td>
+<td>-1</td>
+<td>Value of c is out of range</td>
+</tr>
+<tr>
+<td>WN4</td>
+<td>101</td>
+<td>5</td>
+<td>5</td>
+<td>Value of a is out of range</td>
+</tr>
+<tr>
+<td>WN5</td>
+<td>5</td>
+<td>101</td>
+<td>5</td>
+<td>Value of b is out of range</td>
+</tr>
+<tr>
+<td>WN6</td>
+<td>5</td>
+<td>5</td>
+<td>101</td>
+<td>Value of c is out of range</td>
+</tr>
+<tr>
+<td>WN7</td>
+<td>5.5</td>
+<td>5</td>
+<td>5</td>
+<td>Value of a is illegal</td>
+</tr>
+<tr>
+<td>WN8</td>
+<td>5</td>
+<td>5.5</td>
+<td>5</td>
+<td>Value of b is illegal</td>
+</tr>
+<tr>
+<td>WN9</td>
+<td>5</td>
+<td>5</td>
+<td>5.5</td>
+<td>Value of c is illegal</td>
+</tr>
+</tbody>
+</table>
 </div>
-            
-        </div>
+
     </article>
+    <!-- license  -->
     
     <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="previous">
+            
+                <div class="prevSlogan">上一篇文章</div>
+                <a href= "/post/ST5-程序控制流图/" title= "ST5 - 程序控制流图">
+                    <div class="prevTitle">ST5 - 程序控制流图</div>
+                </a>
+            
+        </li>
+        <li class="next">
+            
+                <div class="nextSlogan">继续阅读下一篇</div>
+                <a href= "/post/ST6-黑盒测试判定表法/" title= "ST6 - 黑盒测试判定表法">
+                    <div class="nextTitle">ST6 - 黑盒测试判定表法</div>
+                </a>
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
+    
+    <!-- gitalk评论 -->
+
+    <!-- utteranc评论 -->
+
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
 </main>
             <!-- profile -->
             
@@ -509,6 +743,24 @@
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:40vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#作业内容"><span class="toc-number">1.</span> <span class="toc-text">作业内容</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#内容说明"><span class="toc-number">2.</span> <span class="toc-text">内容说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#解答"><span class="toc-number">3.</span> <span class="toc-text">解答</span></a></li></ol>
+    </div>
     
     <div class="back-top iconfont-archer">&#xe639;</div>
     <div class="sidebar sidebar-hide">
@@ -921,6 +1173,8 @@ jsonContent:
     
     </div>
     <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
      
     </body>
 </html>
