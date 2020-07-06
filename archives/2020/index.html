@@ -354,18 +354,17 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/post/ST6-黑盒测试判定表法/" >
+        <a class="abstract-title" href = "/post/ST7-三角形问题等价类划分/" >
             
-                <span>ST6 - 黑盒测试判定表法</span>
+                <span>ST7 - 三角形问题等价类划分</span>
         </a>
         <div class="abstract-content">
-            <p>黑盒测试把测试对象当作看不见内部细节的“黑盒”，在完全不考虑被测程序内部结构和处理过程的情况下，仅仅依据程序功能的需求规格设计测试用例，并推断测试结果的正确性。</p>
-<p>黑盒测试也称为功能测试或数据驱动测试，要求导出执行被测程序所有功能需求的输入条件集，生成测试用例集，实现功能覆盖。功能覆盖主要是需求覆盖，即通过设计一定的测试用例，对每个功能需求点进行测试。根据软件产品需求规格说明中的功能设计规格进行测试，以证实每个实现了的功能是否符合规格要求。</p>
+            <p>等价类划分是一种典型的黑盒测试方法。等价类划分方法完全不考虑被测程序的内部结构，只依据程序的规格说明来设计测试用例。</p>
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
             <div class="abstract-date">
-                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/04</span>
+                <span class="abstract-calander iconfont-archer">&#xe676;</span><span class="abstract-time">2020/07/05</span>
             </div>
             <!-- tags  -->
             
@@ -386,12 +385,13 @@
     
     
     <article class="index-post">
-        <a class="abstract-title" href = "/post/ST7-三角形问题等价类划分/" >
+        <a class="abstract-title" href = "/post/ST6-黑盒测试判定表法/" >
             
-                <span>ST7 - 三角形问题等价类划分</span>
+                <span>ST6 - 黑盒测试判定表法</span>
         </a>
         <div class="abstract-content">
-            <p>等价类划分是一种典型的黑盒测试方法。等价类划分方法完全不考虑被测程序的内部结构，只依据程序的规格说明来设计测试用例。</p>
+            <p>黑盒测试把测试对象当作看不见内部细节的“黑盒”，在完全不考虑被测程序内部结构和处理过程的情况下，仅仅依据程序功能的需求规格设计测试用例，并推断测试结果的正确性。</p>
+<p>黑盒测试也称为功能测试或数据驱动测试，要求导出执行被测程序所有功能需求的输入条件集，生成测试用例集，实现功能覆盖。功能覆盖主要是需求覆盖，即通过设计一定的测试用例，对每个功能需求点进行测试。根据软件产品需求规格说明中的功能设计规格进行测试，以证实每个实现了的功能是否符合规格要求。</p>
         </div>
         <div class="abstract-post-meta">
             <!-- date  -->
@@ -855,32 +855,6 @@
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
         Total : 18
@@ -899,7 +873,7 @@
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">07/04</span><a class="archive-post-title" href= "/post/ST7-三角形问题等价类划分/" >ST7 - 三角形问题等价类划分</a>
+            <span class="archive-post-date">07/05</span><a class="archive-post-title" href= "/post/ST7-三角形问题等价类划分/" >ST7 - 三角形问题等价类划分</a>
         </li>
     
     
@@ -1079,7 +1053,24 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
 </html>
 
 
