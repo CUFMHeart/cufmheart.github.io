@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- title -->
+
+
+
+
+<!-- keywords -->
+
+
+
+
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="author" content="CUFMH2">
+    <meta name="renderer" content="webkit">
+    <meta name="copyright" content="CUFMH2">
+    
+    <meta name="keywords" content="CUFMH,cufmheart">
+    
+    <meta name="description" content>
+    <meta name="description" content="练得身形似鹤形，千株松下两函经。 我来问道无余说，云在青天水在瓶。">
+<meta name="keywords" content="LeetCode,剑指Offer">
+<meta property="og:type" content="article">
+<meta property="og:title" content="LeetCode - 剑指Offer - Part3">
+<meta property="og:url" content="https://cufmheart.github.io/post/LeetCode-剑指Offer-Part3/index.html">
+<meta property="og:site_name" content="CUFMH2Blog">
+<meta property="og:description" content="练得身形似鹤形，千株松下两函经。 我来问道无余说，云在青天水在瓶。">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-09-04T17:36:14.460Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="LeetCode - 剑指Offer - Part3">
+<meta name="twitter:description" content="练得身形似鹤形，千株松下两函经。 我来问道无余说，云在青天水在瓶。">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
+    <title>LeetCode - 剑指Offer - Part3 · CUFMH2Blog</title>
+    <style type="text/css">
+    @font-face {
+        font-family: 'Oswald-Regular';
+        src: url("/font/Oswald-Regular.ttf");
+    }
+
+    body {
+        margin: 0;
+    }
+
+    header,
+    footer,
+    .back-top,
+    .sidebar,
+    .container,
+    .site-intro-meta,
+    .toc-wrapper {
+        display: none;
+    }
+
+    .site-intro {
+        position: relative;
+        z-index: 3;
+        width: 100%;
+        /* height: 50vh; */
+        overflow: hidden;
+    }
+
+    .site-intro-placeholder {
+        position: absolute;
+        z-index: -2;
+        top: 0;
+        left: 0;
+        width: calc(100% + 300px);
+        height: 100%;
+        background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+        background-position: center center;
+        transform: translate3d(-226px, 0, 0);
+        animation: gradient-move 2.5s ease-out 0s infinite;
+    }
+
+    @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+
+</style>
+
+    <link rel="preload" href="/css/style.css?v=20180824" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link rel="stylesheet" href="/css/mobile.css?v=20180824" media="(max-width: 980px)">
+    
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    
+    <!-- /*! loadCSS. [c]2017 Filament Group, Inc. MIT License */
+/* This file is meant as a standalone workflow for
+- testing support for link[rel=preload]
+- enabling async CSS loading in browsers that do not support rel=preload
+- applying rel preload css once loaded, whether supported or not.
+*/ -->
+<script>
+(function( w ){
+	"use strict";
+	// rel=preload support test
+	if( !w.loadCSS ){
+		w.loadCSS = function(){};
+	}
+	// define on the loadCSS obj
+	var rp = loadCSS.relpreload = {};
+	// rel=preload feature support test
+	// runs once and returns a function for compat purposes
+	rp.support = (function(){
+		var ret;
+		try {
+			ret = w.document.createElement( "link" ).relList.supports( "preload" );
+		} catch (e) {
+			ret = false;
+		}
+		return function(){
+			return ret;
+		};
+	})();
+
+	// if preload isn't supported, get an asynchronous load by using a non-matching media attribute
+	// then change that media back to its intended value on load
+	rp.bindMediaToggle = function( link ){
+		// remember existing media attr for ultimate state, or default to 'all'
+		var finalMedia = link.media || "all";
+
+		function enableStylesheet(){
+			link.media = finalMedia;
+		}
+
+		// bind load handlers to enable media
+		if( link.addEventListener ){
+			link.addEventListener( "load", enableStylesheet );
+		} else if( link.attachEvent ){
+			link.attachEvent( "onload", enableStylesheet );
+		}
+
+		// Set rel and non-applicable media type to start an async request
+		// note: timeout allows this to happen async to let rendering continue in IE
+		setTimeout(function(){
+			link.rel = "stylesheet";
+			link.media = "only x";
+		});
+		// also enable media after 3 seconds,
+		// which will catch very old browsers (android 2.x, old firefox) that don't support onload on link
+		setTimeout( enableStylesheet, 3000 );
+	};
+
+	// loop through link elements in DOM
+	rp.poly = function(){
+		// double check this to prevent external calls from running
+		if( rp.support() ){
+			return;
+		}
+		var links = w.document.getElementsByTagName( "link" );
+		for( var i = 0; i < links.length; i++ ){
+			var link = links[ i ];
+			// qualify links to those with rel=preload and as=style attrs
+			if( link.rel === "preload" && link.getAttribute( "as" ) === "style" && !link.getAttribute( "data-loadcss" ) ){
+				// prevent rerunning on link
+				link.setAttribute( "data-loadcss", true );
+				// bind listeners to toggle media back
+				rp.bindMediaToggle( link );
+			}
+		}
+	};
+
+	// if unsupported, run the polyfill
+	if( !rp.support() ){
+		// run once at least
+		rp.poly();
+
+		// rerun poly on an interval until onload
+		var run = w.setInterval( rp.poly, 500 );
+		if( w.addEventListener ){
+			w.addEventListener( "load", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		} else if( w.attachEvent ){
+			w.attachEvent( "onload", function(){
+				rp.poly();
+				w.clearInterval( run );
+			} );
+		}
+	}
+
+
+	// commonjs
+	if( typeof exports !== "undefined" ){
+		exports.loadCSS = loadCSS;
+	}
+	else {
+		w.loadCSS = loadCSS;
+	}
+}( typeof global !== "undefined" ? global : this ) );
+</script>
+
+    <link rel="icon" href="/avatar/icon_128x1282.png">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js" as="script">
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" as="script">
+    <link rel="preload" href="/scripts/main.js" as="script">
+    <link rel="preload" as="font" href="/font/Oswald-Regular.ttf" crossorigin>
+    <link rel="preload" as="font" href="https://at.alicdn.com/t/font_327081_1dta1rlogw17zaor.woff" crossorigin>
+    
+    <!-- fancybox -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.2.5/jquery.fancybox.min.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="read-progress"></div>
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >CUFMH2Blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">LeetCode - 剑指Offer - Part3</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>CUFMH2Blog</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro" style="
+
+
+
+
+
+
+
+height:40vh;
+">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-img" style="background-image: url(/intro/post-bg.png)"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            LeetCode - 剑指Offer - Part3
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <div class="post-intros">
+                <!-- 文章页标签  -->
+                
+                    <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "LeetCode">LeetCode</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-tags = "剑指Offer">剑指Offer</a>
+    
+</div>
+                
+                
+                    <div class="post-intro-read">
+                        <span>
+                            Word count: 
+                                <span class="post-count word-count">2.2k</span>
+                            Reading time: 
+                                <span class="post-count reading-time">10 min</span>
+                        </span>
+
+                    </div>
+                
+                <div class="post-intro-meta">
+                    <span class="post-intro-calander iconfont-archer power">&#xe676;</span>
+                    <span class="post-intro-time">2020-09-04</span>
+                    
+                        <span id="busuanzi_container_page_pv" class="busuanzi-pv">
+                            <span class="iconfont-archer">&#xe604;</span>
+                            <span id="busuanzi_value_page_pv">calculating</span>
+                        </span>
+                    
+                    <span class="shareWrapper">
+                        <span class="iconfont-archer shareIcon">&#xe71d;</span>
+                        <span class="shareText">Share</span>
+                        <ul class="shareList">
+                            <li class="iconfont-archer share-qr" data-type="qr">&#xe75b;
+                                <div class="share-qrcode"></div>
+                            </li>
+                            <li class="iconfont-archer" data-type="weibo">&#xe619;</li>
+                            <li class="iconfont-archer" data-type="qzone">&#xe62e;</li>
+                            <li class="iconfont-archer" data-type="twitter">&#xe634;</li>
+                            <li class="iconfont-archer" data-type="facebook">&#xe67a;</li>
+                        </ul>
+                    </span>
+
+                </div>
+            </div>
+        
+    </div>
+</div>
+        <script>
+ 
+  // get user agent
+  var browser = {
+    versions: function () {
+      var u = window.navigator.userAgent;
+      return {
+        userAgent: u,
+        trident: u.indexOf('Trident') > -1, //IE内核
+        presto: u.indexOf('Presto') > -1, //opera内核
+        webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+        gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+        mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+        ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+        android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+        iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+        iPad: u.indexOf('iPad') > -1, //是否为iPad
+        webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+        weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+        uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+      };
+    }()
+  }
+  console.log("userAgent:" + browser.versions.userAgent);
+
+  // callback
+  function fontLoaded() {
+    console.log('font loaded');
+    if (document.getElementsByClassName('site-intro-meta')) {
+      document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+      document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+      var postIntros = document.getElementsByClassName('post-intros')[0]
+      if (postIntros) {
+        postIntros.classList.add('post-fade-in');
+      }
+    }
+  }
+
+  // UC不支持跨域，所以直接显示
+  function asyncCb(){
+    if (browser.versions.uc) {
+      console.log("UCBrowser");
+      fontLoaded();
+    } else {
+      WebFont.load({
+        custom: {
+          families: ['Oswald-Regular']
+        },
+        loading: function () {  //所有字体开始加载
+          // console.log('loading');
+        },
+        active: function () {  //所有字体已渲染
+          fontLoaded();
+        },
+        inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+          console.log('inactive: timeout');
+          fontLoaded();
+        },
+        timeout: 5000 // Set the timeout to two seconds
+      });
+    }
+  }
+
+  function asyncErr(){
+    console.warn('script load from CDN failed, will load local script')
+  }
+
+  // load webfont-loader async, and add callback function
+  function async(u, cb, err) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (cb) { o.addEventListener('load', function (e) { cb(null, e); }, false); }
+    if (err) { o.addEventListener('error', function (e) { err(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
+  }
+
+  var asyncLoadWithFallBack = function(arr, success, reject) {
+      var currReject = function(){
+        reject()
+        arr.shift()
+        if(arr.length)
+          async(arr[0], success, currReject)
+        }
+
+      async(arr[0], success, currReject)
+  }
+
+  asyncLoadWithFallBack([
+    "https://cdn.jsdelivr.net/npm/webfontloader@1.6.28/webfontloader.min.js", 
+    "https://cdn.bootcss.com/webfont/1.6.28/webfontloader.js",
+    "/lib/webfontloader.min.js"
+  ], asyncCb, asyncErr)
+</script>        
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>练得身形似鹤形，千株松下两函经。</p>
+<p>我来问道无余说，云在青天水在瓶。</p>
+<a id="more"></a>
+<h2 id="剑指-Offer-21-使奇数位于偶数前面"><a href="#剑指-Offer-21-使奇数位于偶数前面" class="headerlink" title="剑指 Offer 21. 使奇数位于偶数前面"></a>剑指 Offer 21. 使奇数位于偶数前面</h2><blockquote>
+<p>输入一个整数数组，实现一个函数来调整该数组中数字的顺序，使得所有奇数位于数组的前半部分，所有偶数位于数组的后半部分。</p>
+<p> 示例：</p>
+<p>输入：nums = [1,2,3,4]<br>输出：[1,3,2,4]<br>注：[3,1,2,4] 也是正确的答案之一。</p>
+<p>提示：</p>
+<p>1 &lt;= nums.length &lt;= 50000<br>1 &lt;= nums[i] &lt;= 10000</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/diao-zheng-shu-zu-shun-xu-shi-qi-shu-wei-yu-ou-shu-qian-mian-lcof</a></p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; exchange(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">      	<span class="comment">//	双指针</span></span><br><span class="line">        <span class="comment">//  85.78%  85.49%</span></span><br><span class="line">        <span class="keyword">int</span> len=nums.size();</span><br><span class="line">        <span class="keyword">int</span> a=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;len;i++) &#123;</span><br><span class="line">            <span class="keyword">if</span>(nums[i]%<span class="number">2</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span>(a!=i) &#123;</span><br><span class="line">                    <span class="keyword">int</span> temp=nums[i];</span><br><span class="line">                    nums[i]=nums[a];</span><br><span class="line">                    nums[a]=temp;</span><br><span class="line">                &#125;</span><br><span class="line">                a++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> nums;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="剑指-Offer-22-链表倒数第k个节点"><a href="#剑指-Offer-22-链表倒数第k个节点" class="headerlink" title="剑指 Offer 22. 链表倒数第k个节点"></a>剑指 Offer 22. 链表倒数第k个节点</h2><blockquote>
+<p>输入一个链表，输出该链表中倒数第k个节点。为了符合大多数人的习惯，本题从1开始计数，即链表的尾节点是倒数第1个节点。例如，一个链表有6个节点，从头节点开始，它们的值依次是1、2、3、4、5、6。这个链表的倒数第3个节点是值为4的节点。</p>
+<p>示例：</p>
+<p>给定一个链表: 1-&gt;2-&gt;3-&gt;4-&gt;5, 和 k = 2.</p>
+<p>返回链表 4-&gt;5.</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/lian-biao-zhong-dao-shu-di-kge-jie-dian-lcof</a></p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">getKthFromEnd</span><span class="params">(ListNode* head, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//  快慢指针</span></span><br><span class="line">        <span class="comment">//  55.14%  97.10%</span></span><br><span class="line">        <span class="comment">//  先让快指针走k步，然后两个指针同步走，</span></span><br><span class="line">        <span class="comment">//  当快指针走到头时，慢指针就是链表倒数第k个节点。</span></span><br><span class="line">        ListNode *p=head;</span><br><span class="line">        <span class="keyword">while</span>(k--&gt;<span class="number">1</span>) &#123;</span><br><span class="line">            p=p-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span>(p-&gt;next) &#123;</span><br><span class="line">            p=p-&gt;next;</span><br><span class="line">            head=head-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="剑指-Offer-23-链表环的入口节点"><a href="#剑指-Offer-23-链表环的入口节点" class="headerlink" title="剑指 Offer 23. 链表环的入口节点"></a>剑指 Offer 23. 链表环的入口节点</h2><blockquote>
+<p>快慢指针即可</p>
+</blockquote>
+<h2 id="剑指-Offer-24-反转链表"><a href="#剑指-Offer-24-反转链表" class="headerlink" title="剑指 Offer 24. 反转链表"></a>剑指 Offer 24. 反转链表</h2><blockquote>
+<p>定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。</p>
+<p>示例:</p>
+<p>输入: 1-&gt;2-&gt;3-&gt;4-&gt;5-&gt;NULL<br>输出: 5-&gt;4-&gt;3-&gt;2-&gt;1-&gt;NULL</p>
+<p>限制：</p>
+<p>0 &lt;= 节点个数 &lt;= 5000</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof</a></p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">//  96.09%  57.89%</span></span><br><span class="line">    <span class="function">ListNode* <span class="title">reverseList</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!head) <span class="keyword">return</span> head;</span><br><span class="line">        ListNode *c=head, *p=head, *temp=<span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">while</span>(c-&gt;next) &#123;</span><br><span class="line">            temp=c-&gt;next;</span><br><span class="line">            c-&gt;next=c-&gt;next-&gt;next;</span><br><span class="line">            temp-&gt;next=p;</span><br><span class="line">            p=temp;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="剑指-Offer-25-合并两个排序的链表"><a href="#剑指-Offer-25-合并两个排序的链表" class="headerlink" title="剑指 Offer 25. 合并两个排序的链表"></a>剑指 Offer 25. 合并两个排序的链表</h2><blockquote>
+<p>输入两个递增排序的链表，合并这两个链表并使新链表中的节点仍然是递增排序的。</p>
+<p>示例1：</p>
+<p>输入：1-&gt;2-&gt;4, 1-&gt;3-&gt;4<br>输出：1-&gt;1-&gt;2-&gt;3-&gt;4-&gt;4<br>限制：</p>
+<p>0 &lt;= 链表长度 &lt;= 1000</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/he-bing-liang-ge-pai-xu-de-lian-biao-lcof</a></p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">//  98.22%  90.66%</span></span><br><span class="line">    <span class="function">ListNode* <span class="title">mergeTwoLists</span><span class="params">(ListNode* l1, ListNode* l2)</span> </span>&#123;</span><br><span class="line">        ListNode * head=<span class="literal">nullptr</span>;</span><br><span class="line">        <span class="keyword">if</span>(!l1) &#123;<span class="keyword">return</span> l2;&#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(!l2) &#123;<span class="keyword">return</span> l1;&#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(l1-&gt;val&lt;l2-&gt;val) &#123;head=l1; l1=l1-&gt;next;&#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;head=l2; l2=l2-&gt;next;&#125;</span><br><span class="line">        ListNode * p=head;</span><br><span class="line">        <span class="keyword">while</span>(l1||l2) &#123;</span><br><span class="line">            <span class="keyword">if</span>(!l1) &#123;</span><br><span class="line">                p-&gt;next=l2;</span><br><span class="line">                l2=l2-&gt;next;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(!l2) &#123;</span><br><span class="line">                p-&gt;next=l1;</span><br><span class="line">                l1=l1-&gt;next;</span><br><span class="line">            &#125; <span class="keyword">else</span> <span class="keyword">if</span>(l1-&gt;val&lt;l2-&gt;val)&#123;</span><br><span class="line">                p-&gt;next=l1;</span><br><span class="line">                l1=l1-&gt;next;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                p-&gt;next=l2;</span><br><span class="line">                l2=l2-&gt;next;</span><br><span class="line">            &#125;</span><br><span class="line">            p=p-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> head;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="剑指-Offer-26-树的子结构"><a href="#剑指-Offer-26-树的子结构" class="headerlink" title="剑指 Offer 26. 树的子结构*"></a>剑指 Offer 26. 树的子结构*</h2><blockquote>
+<p>输入两棵二叉树A和B，判断B是不是A的子结构。(约定空树不是任意一个树的子结构)</p>
+<p>B是A的子结构， 即 A中有出现和B相同的结构和节点值。</p>
+<p>例如:<br>给定的树 A:</p>
+<pre><code> 3
+/ \
+</code></pre><p>   4   5<br>  / \<br> 1   2<br>给定的树 B：</p>
+<p>   4<br>  /<br> 1<br>返回 true，因为 B 与 A 的一个子树拥有相同的结构和节点值。</p>
+<p>示例 1：</p>
+<p>输入：A = [1,2,3], B = [3,1]<br>输出：false<br>示例 2：</p>
+<p>输入：A = [3,4,5,1,2], B = [4,1]<br>输出：true<br>限制：</p>
+<p>0 &lt;= 节点个数 &lt;= 10000</p>
+<p>通过次数41,506提交次数89,791</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/shu-de-zi-jie-gou-lcof</a></p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="comment">//  93.81%  59.55%</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isSubStructure</span><span class="params">(TreeNode* A, TreeNode* B)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!A || !B) &#123;<span class="keyword">return</span> <span class="literal">false</span>;&#125;</span><br><span class="line">        <span class="keyword">return</span> fun(A,B) || isSubStructure(A-&gt;left,B) || isSubStructure(A-&gt;right,B);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">fun</span><span class="params">(TreeNode* A, TreeNode* B)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!B) &#123;<span class="keyword">return</span> <span class="literal">true</span>;&#125;</span><br><span class="line">        <span class="keyword">if</span>(!A) &#123;<span class="keyword">return</span> <span class="literal">false</span>;&#125;</span><br><span class="line">        <span class="keyword">return</span> A-&gt;val == B-&gt;val &amp;&amp; fun(A-&gt;left, B-&gt;left) &amp;&amp; fun(A-&gt;right, B-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="剑指-Offer-27-二叉树的镜像"><a href="#剑指-Offer-27-二叉树的镜像" class="headerlink" title="剑指 Offer 27. 二叉树的镜像"></a>剑指 Offer 27. 二叉树的镜像</h2><blockquote>
+<p>请完成一个函数，输入一个二叉树，该函数输出它的镜像。 </p>
+<p>示例 1：</p>
+<p>输入：root = [4,2,7,1,3,6,9]<br>输出：[4,7,2,9,6,3,1]</p>
+<p>限制：</p>
+<p>0 &lt;= 节点个数 &lt;= 1000</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/er-cha-shu-de-jing-xiang-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/er-cha-shu-de-jing-xiang-lcof</a></p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  	<span class="comment">//	递归</span></span><br><span class="line">    <span class="comment">//  100.00% 80.62%</span></span><br><span class="line">    <span class="function">TreeNode* <span class="title">mirrorTree</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> root;</span><br><span class="line">        TreeNode * temp=root-&gt;left;</span><br><span class="line">        root-&gt;left=mirrorTree(root-&gt;right);</span><br><span class="line">        root-&gt;right=mirrorTree(temp);</span><br><span class="line">        <span class="keyword">return</span> root;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="剑指-Offer-28-对称的二叉树"><a href="#剑指-Offer-28-对称的二叉树" class="headerlink" title="剑指 Offer 28. 对称的二叉树"></a>剑指 Offer 28. 对称的二叉树</h2><blockquote>
+<p>请实现一个函数，用来判断一棵二叉树是不是对称的。如果一棵二叉树和它的镜像一样，那么它是对称的。</p>
+<p>示例 1：</p>
+<p>输入：root = [1,2,2,3,4,4,3]<br>输出：true<br>示例 2：</p>
+<p>输入：root = [1,2,2,null,3,null,3]<br>输出：false</p>
+<p>限制：</p>
+<p>0 &lt;= 节点个数 &lt;= 1000</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/dui-cheng-de-er-cha-shu-lcof</a></p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">//  递归</span></span><br><span class="line">    <span class="comment">//  93.14%  71.60%</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">isSymmetric</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!root) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">return</span> fun(root-&gt;left, root-&gt;right);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//  判断两个树是否对称</span></span><br><span class="line">    <span class="comment">//  若都非空，对称需要值相同、1左和2右对称、1右和2左对称</span></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">fun</span><span class="params">(TreeNode* &amp;l, TreeNode* &amp;r)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!l &amp;&amp; !r) <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">if</span>(!l || !r) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        <span class="keyword">return</span> l-&gt;val==r-&gt;val &amp;&amp; fun(l-&gt;left, r-&gt;right) &amp;&amp; fun(l-&gt;right, r-&gt;left);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="剑指-Offer-29-顺时针打印矩阵"><a href="#剑指-Offer-29-顺时针打印矩阵" class="headerlink" title="剑指 Offer 29. 顺时针打印矩阵*"></a>剑指 Offer 29. 顺时针打印矩阵*</h2><blockquote>
+<p>输入一个矩阵，按照从外向里以顺时针的顺序依次打印出每一个数字。</p>
+<p>示例 1：</p>
+<p>输入：matrix = [[1,2,3],[4,5,6],[7,8,9]]<br>输出：[1,2,3,6,9,8,7,4,5]<br>示例 2：</p>
+<p>输入：matrix = [[1,2,3,4],[5,6,7,8],[9,10,11,12]]<br>输出：[1,2,3,4,8,12,11,10,9,5,6,7]</p>
+<p>限制：</p>
+<p>0 &lt;= matrix.length &lt;= 100<br>0 &lt;= matrix[i].length &lt;= 100</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/shun-shi-zhen-da-yin-ju-zhen-lcof</a></p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; spiralOrder(<span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&gt;&amp; matrix) &#123;</span><br><span class="line">        <span class="comment">//  99.19%  81.60%</span></span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">        <span class="keyword">int</span> len1=matrix.size();</span><br><span class="line">        <span class="keyword">if</span>(!len1) <span class="keyword">return</span> res;</span><br><span class="line">        <span class="keyword">int</span> len2=matrix[<span class="number">0</span>].size();</span><br><span class="line">        <span class="keyword">if</span>(!len2) <span class="keyword">return</span> res;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">int</span> n1=len1/<span class="number">2</span>+len1%<span class="number">2</span>, n2=len2/<span class="number">2</span>+len2%<span class="number">2</span>;</span><br><span class="line">        <span class="comment">//  一共要绕几个圈</span></span><br><span class="line">        <span class="keyword">int</span> c=n1&lt;n2?n1:n2;</span><br><span class="line">        <span class="comment">//  判断最后一个圈长宽是否可能为1</span></span><br><span class="line">        <span class="keyword">bool</span> flag=(len1<span class="number">-2</span>*c+<span class="number">2</span>==<span class="number">1</span> || len2<span class="number">-2</span>*c+<span class="number">2</span>==<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;c;i++) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i; j&lt;len2-i; j++) res.push_back(matrix[i][j]);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=i+<span class="number">1</span>; j&lt;len1-i; j++) res.push_back(matrix[j][len2-i<span class="number">-1</span>]);</span><br><span class="line">            <span class="keyword">if</span>(i!=c<span class="number">-1</span> || !flag)&#123;</span><br><span class="line">                <span class="comment">//  如果最后一个长宽为1，则不执行后一半</span></span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j=len2-i<span class="number">-2</span>; j&gt;=i; j--) res.push_back(matrix[len1-i<span class="number">-1</span>][j]);</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> j=len1-i<span class="number">-2</span>; j&gt;=i+<span class="number">1</span>; j--) res.push_back(matrix[j][i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="剑指-Offer-30-包含min函数的栈"><a href="#剑指-Offer-30-包含min函数的栈" class="headerlink" title="剑指 Offer 30. 包含min函数的栈"></a>剑指 Offer 30. 包含min函数的栈</h2><blockquote>
+<p>定义栈的数据结构，请在该类型中实现一个能够得到栈的最小元素的 min 函数在该栈中，调用 min、push 及 pop 的时间复杂度都是 O(1)。</p>
+<p>示例:</p>
+<p>MinStack minStack = new MinStack();<br>minStack.push(-2);<br>minStack.push(0);<br>minStack.push(-3);<br>minStack.min();   —&gt; 返回 -3.<br>minStack.pop();<br>minStack.top();      —&gt; 返回 0.<br>minStack.min();   —&gt; 返回 -2.</p>
+<p>提示：</p>
+<p>各函数的调用总次数不超过 20000 次</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/bao-han-minhan-shu-de-zhan-lcof</a></p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">  	<span class="comment">//	辅助栈</span></span><br><span class="line">    <span class="comment">//  85.39%  67.60%</span></span><br><span class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; m;</span><br><span class="line">    MinStack() &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(m.empty() || m.top()&gt;=x) m.push(x);</span><br><span class="line">        s.push(x);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(!s.empty())&#123;</span><br><span class="line">            <span class="keyword">if</span>(s.top()==m.top()) m.pop();</span><br><span class="line">            s.pop();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> s.top(); &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">min</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> m.top(); &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your MinStack object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * MinStack* obj = new MinStack();</span></span><br><span class="line"><span class="comment"> * obj-&gt;push(x);</span></span><br><span class="line"><span class="comment"> * obj-&gt;pop();</span></span><br><span class="line"><span class="comment"> * int param_3 = obj-&gt;top();</span></span><br><span class="line"><span class="comment"> * int param_4 = obj-&gt;min();</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<hr>
+
+    </article>
+    <!-- license  -->
+    
+    <!-- paginator  -->
+    <ul class="post-paginator">
+        <li class="previous">
+            
+                <div class="prevSlogan">上一篇文章</div>
+                <a href= "/post/LeetCode-剑指Offer-Part2/" title= "LeetCode - 剑指Offer - Part2">
+                    <div class="prevTitle">LeetCode - 剑指Offer - Part2</div>
+                </a>
+            
+        </li>
+        <li class="next">
+            
+        </li>
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!-- gitalk评论 -->
+
+    <!-- utteranc评论 -->
+
+    <!-- partial('_partial/comment/changyan') -->
+    <!--PC版-->
+
+
+    
+    
+
+    <!-- 评论 -->
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    <!-- 
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:wen.hl@foxmail.com" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/CUFMHeart" class="iconfont-archer github" target="_blank" title=github></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="https://cufmheart.github.io/" class="iconfont-archer weibo" target="_blank" title=weibo></a>
+            
+        
+    
+        
+    
+        
+            
+                <a href="https://cufmheart.github.io/" class="iconfont-archer douban" target="_blank" title=douban></a>
+            
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+            
+                <a href="https://cufmheart.github.io/" class="iconfont-archer others" target="_blank" title=others></a>
+            
+        
+    
+        
+    
+        
+            
+                <a href="https://cufmheart.github.io/" class="iconfont-archer rss" target="_blank" title=rss></a>
+            
+        
+    
+
+    </div>
+     -->
+
+    <!-- powered by Hexo  -->
+    <!-- <div class="copyright"> -->
+        <!-- <span id="hexo-power">- W -</span> -->
+        <!-- <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">Archer</a></span> -->
+    <!-- </div> -->
+    
+    <!-- 不蒜子  -->
+    
+    <div class="busuanzi-container">
+    
+    <span id="busuanzi_container_site_pv">☺</span>
+    <!-- 
+    <span id="busuanzi_container_site_uv">:)<span id="busuanzi_value_site_uv"></span></span>
+     -->
+    </div>
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper" style=
+    
+
+
+
+
+
+
+
+top:40vh;
+
+    >
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#剑指-Offer-21-使奇数位于偶数前面"><span class="toc-number">1.</span> <span class="toc-text">剑指 Offer 21. 使奇数位于偶数前面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#剑指-Offer-22-链表倒数第k个节点"><span class="toc-number">2.</span> <span class="toc-text">剑指 Offer 22. 链表倒数第k个节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#剑指-Offer-23-链表环的入口节点"><span class="toc-number">3.</span> <span class="toc-text">剑指 Offer 23. 链表环的入口节点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#剑指-Offer-24-反转链表"><span class="toc-number">4.</span> <span class="toc-text">剑指 Offer 24. 反转链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#剑指-Offer-25-合并两个排序的链表"><span class="toc-number">5.</span> <span class="toc-text">剑指 Offer 25. 合并两个排序的链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#剑指-Offer-26-树的子结构"><span class="toc-number">6.</span> <span class="toc-text">剑指 Offer 26. 树的子结构*</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#剑指-Offer-27-二叉树的镜像"><span class="toc-number">7.</span> <span class="toc-text">剑指 Offer 27. 二叉树的镜像</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#剑指-Offer-28-对称的二叉树"><span class="toc-number">8.</span> <span class="toc-text">剑指 Offer 28. 对称的二叉树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#剑指-Offer-29-顺时针打印矩阵"><span class="toc-number">9.</span> <span class="toc-text">剑指 Offer 29. 顺时针打印矩阵*</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#剑指-Offer-30-包含min函数的栈"><span class="toc-number">10.</span> <span class="toc-text">剑指 Offer 30. 包含min函数的栈</span></a></li></ol>
+    </div>
+    
+    <div class="back-top iconfont-archer">&#xe639;</div>
+    <div class="sidebar sidebar-hide">
+    <ul class="sidebar-tabs sidebar-tabs-active-0">
+        <li class="sidebar-tab-archives"><span class="iconfont-archer">&#xe67d;</span><span class="tab-name">Archive</span></li>
+        <li class="sidebar-tab-tags"><span class="iconfont-archer">&#xe61b;</span><span class="tab-name">Tag</span></li>
+        <li class="sidebar-tab-categories"><span class="iconfont-archer">&#xe666;</span><span class="tab-name">Cate</span></li>
+    </ul>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-panel-archives">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-and-search">
+        <div class="total-archive">
+        Total : 22
+        </div>
+        <!-- search  -->
+        
+    </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2020 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href= "/post/LeetCode-剑指Offer-Part3/" >LeetCode - 剑指Offer - Part3</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/03</span><a class="archive-post-title" href= "/post/LeetCode-剑指Offer-Part2/" >LeetCode - 剑指Offer - Part2</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/01</span><a class="archive-post-title" href= "/post/LeetCode-剑指Offer-Part1/" >LeetCode - 剑指Offer - Part1</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/06</span><a class="archive-post-title" href= "/post/ST8-NextDate问题等价类划分/" >ST8 - NextDate 问题等价类划分</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/05</span><a class="archive-post-title" href= "/post/ST7-三角形问题等价类划分/" >ST7 - 三角形问题等价类划分</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/04</span><a class="archive-post-title" href= "/post/ST6-黑盒测试判定表法/" >ST6 - 黑盒测试判定表法</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">07/03</span><a class="archive-post-title" href= "/post/ST5-程序控制流图/" >ST5 - 程序控制流图</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/11</span><a class="archive-post-title" href= "/post/ST4-Halstead复杂度计算/" >ST4 - Halstead 复杂度计算</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">06/01</span><a class="archive-post-title" href= "/post/ST3-软件生命周期测试概述/" >ST3 - 软件生命周期测试概述</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/15</span><a class="archive-post-title" href= "/post/ST2-敏捷宣言12原则/" >ST2 - 敏捷宣言 12 原则</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">05/01</span><a class="archive-post-title" href= "/post/ST1-原型方法与生命周期/" >ST1 - 原型方法与生命周期</a>
+        </li>
+    
+    
+    
+    
+    
+        </ul>
+    
+    <div class="archive-year"> 2019 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/19</span><a class="archive-post-title" href= "/post/3dG11-AR-MR技术/" >3D Game 11 - AR/MR 技术</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">12/06</span><a class="archive-post-title" href= "/post/3dG10-游戏智能/" >3D Game 10 - 游戏智能</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/20</span><a class="archive-post-title" href= "/post/3dG9-UI系统/" >3D Game 9 - UI 系统</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/04</span><a class="archive-post-title" href= "/post/3dG8-粒子系统/" >3D Game 8 - 粒子系统</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/25</span><a class="archive-post-title" href= "/post/3dG7-模型与动画/" >3D Game 7 - 模型与动画</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/18</span><a class="archive-post-title" href= "/post/3dG6-物理系统与碰撞/" >3D Game 6 - 物理系统与碰撞</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/09</span><a class="archive-post-title" href= "/post/3dG5-与游戏世界交互/" >3D Game 5 - 与游戏世界交互</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">10/02</span><a class="archive-post-title" href= "/post/3dG4-游戏对象与图形基础/" >3D Game 4 - 游戏对象与图形基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/20</span><a class="archive-post-title" href= "/post/3dG3-空间与运动/" >3D Game 3 - 空间与运动</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/10</span><a class="archive-post-title" href= "/post/3dG2-离散仿真引擎基础/" >3D Game 2 - 离散仿真引擎基础</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/04</span><a class="archive-post-title" href= "/post/3dG1-World-of-Goo/" >3D Game 1 - World of Goo</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-panel-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name" data-tags="3D-Game-Programming&Design"><span class="iconfont-archer">&#xe606;</span>3D-Game-Programming&Design</span>
+    
+        <span class="sidebar-tag-name" data-tags="SYSU-Course"><span class="iconfont-archer">&#xe606;</span>SYSU-Course</span>
+    
+        <span class="sidebar-tag-name" data-tags="AR/MR"><span class="iconfont-archer">&#xe606;</span>AR/MR</span>
+    
+        <span class="sidebar-tag-name" data-tags="LeetCode"><span class="iconfont-archer">&#xe606;</span>LeetCode</span>
+    
+        <span class="sidebar-tag-name" data-tags="剑指Offer"><span class="iconfont-archer">&#xe606;</span>剑指Offer</span>
+    
+        <span class="sidebar-tag-name" data-tags="Software-Testing"><span class="iconfont-archer">&#xe606;</span>Software-Testing</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #008B8B; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #787878; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: true
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tags-list"></div>
+</div>
+        <div class="sidebar-panel-categories">
+    <div class="sidebar-categories-name">
+    
+        <span class="sidebar-category-name" data-categories="3D-Game-Programming-Design"><span class="iconfont-archer">&#xe60a;</span>3D-Game-Programming-Design</span>
+    
+        <span class="sidebar-category-name" data-categories="Programming"><span class="iconfont-archer">&#xe60a;</span>Programming</span>
+    
+        <span class="sidebar-category-name" data-categories="Software-Testing"><span class="iconfont-archer">&#xe60a;</span>Software-Testing</span>
+    
+    </div>
+    <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
+    <div class="sidebar-categories-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var siteMeta = {
+        root: "/",
+        author: "CUFMH2"
+    }
+</script>
+    <!-- CDN failover -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type="text/javascript">
+        if (typeof window.$ === 'undefined')
+        {
+            console.warn('jquery load from jsdelivr failed, will load local script')
+            document.write('<script src="/lib/jquery.min.js">\x3C/script>')
+        }
+    </script>
+    <script src="/scripts/main.js"></script>
+    <!-- algolia -->
+    
+    <!-- busuanzi  -->
+    
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+    <!-- CNZZ  -->
+    
+    </div>
+    <!-- async load share.js -->
+    
+        <script src="/scripts/share.js" async></script>    
+     
+    </body>
+</html>
+
+
