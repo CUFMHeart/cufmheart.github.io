@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="CUFMH2Blog">
 <meta property="og:description" content="但使龙城飞将在，不教胡马渡阴山。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-09-07T10:39:29.270Z">
+<meta property="og:updated_time" content="2020-09-08T13:12:13.888Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode - 剑指Offer - Part2">
 <meta name="twitter:description" content="但使龙城飞将在，不教胡马渡阴山。">
@@ -289,9 +289,9 @@ height:40vh;
                     <div class="post-intro-read">
                         <span>
                             Word count: 
-                                <span class="post-count word-count">4k</span>
+                                <span class="post-count word-count">4.6k</span>
                             Reading time: 
-                                <span class="post-count reading-time">20 min</span>
+                                <span class="post-count reading-time">23 min</span>
                         </span>
 
                     </div>
@@ -461,12 +461,29 @@ height:40vh;
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">movingCount</span><span class="params">(<span class="keyword">int</span> m, <span class="keyword">int</span> n, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//  3.递推</span></span><br><span class="line">        <span class="comment">//  计算全部是否可到达，一个点是否可到达看上左即可</span></span><br><span class="line">        <span class="comment">//  73.17%  88.08%</span></span><br><span class="line">        <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;&gt; flag(m, <span class="built_in">vector</span>&lt;<span class="keyword">bool</span>&gt;(n, <span class="literal">false</span>));</span><br><span class="line">        flag[<span class="number">0</span>][<span class="number">0</span>]=<span class="literal">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(getSum(i,j)&gt;k) &#123;&#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(i==<span class="number">0</span> &amp;&amp; j==<span class="number">0</span>) &#123;&#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(i==<span class="number">0</span>) &#123; flag[i][j]=flag[i][j<span class="number">-1</span>]; &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(j==<span class="number">0</span>) &#123; flag[i][j]=flag[i<span class="number">-1</span>][j]; &#125;</span><br><span class="line">                <span class="keyword">else</span> &#123; flag[i][j]=flag[i<span class="number">-1</span>][j] | flag[i][j<span class="number">-1</span>]; &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;m;i++) &#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++) &#123;</span><br><span class="line">                <span class="keyword">if</span>(flag[i][j]) &#123; res++; &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getSum</span><span class="params">(<span class="keyword">int</span> i, <span class="keyword">int</span> j)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (i%<span class="number">10</span>+(i/<span class="number">10</span>)%<span class="number">10</span>) + (j%<span class="number">10</span>+(j/<span class="number">10</span>)%<span class="number">10</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h2 id="剑指-Offer-14-剪绳子"><a href="#剑指-Offer-14-剪绳子" class="headerlink" title="剑指 Offer 14. 剪绳子*"></a>剑指 Offer 14. 剪绳子*</h2><blockquote>
 <ol>
-<li><p>动态规划</p>
-</li>
-<li><p>贪婪算法</p>
-</li>
+<li>动态规划</li>
+<li>贪婪算法</li>
 </ol>
+<p>给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段（m、n都是整数，n&gt;1并且m&gt;1），每段绳子的长度记为 k[0],k[1]…k[m-1] 。请问 k[0]<em>k[1]</em>…*k[m-1] 可能的最大乘积是多少？例如，当绳子的长度是8时，我们把它剪成长度分别为2、3、3的三段，此时得到的最大乘积是18。</p>
+<p>示例 1：</p>
+<p>输入: 2<br>输出: 1<br>解释: 2 = 1 + 1, 1 × 1 = 1<br>示例 2:</p>
+<p>输入: 10<br>输出: 36<br>解释: 10 = 3 + 3 + 4, 3 × 3 × 4 = 36<br>提示：</p>
+<p>2 &lt;= n &lt;= 58</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/jian-sheng-zi-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/jian-sheng-zi-lcof</a></p>
 </blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">cuttingRope</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//  dp</span></span><br><span class="line">        <span class="comment">//  100.00% 70.81%</span></span><br><span class="line">        <span class="keyword">if</span>(n&lt;<span class="number">4</span>) <span class="keyword">return</span> n<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">int</span> dp[n+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;<span class="number">4</span>;i++) dp[i]=i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">4</span>;i&lt;=n;i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> max=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=i/<span class="number">2</span>;j++) &#123;</span><br><span class="line">                <span class="keyword">int</span> temp=dp[j]*dp[i-j];</span><br><span class="line">                max = temp&gt;max?temp:max;</span><br><span class="line">            &#125;</span><br><span class="line">            dp[i]=max;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[n];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>-&gt;    数据量变大，不能用动态规划</p>
+<p>给你一根长度为 n 的绳子，请把绳子剪成整数长度的 m 段（m、n都是整数，n&gt;1并且m&gt;1），每段绳子的长度记为 k[0],k[1]…k[m - 1] 。请问 k[0]<em>k[1]</em>…*k[m - 1] 可能的最大乘积是多少？例如，当绳子的长度是8时，我们把它剪成长度分别为2、3、3的三段，此时得到的最大乘积是18。</p>
+<p>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p>
+<p>示例 1：</p>
+<p>输入: 2<br>输出: 1<br>解释: 2 = 1 + 1, 1 × 1 = 1<br>示例 2:</p>
+<p>输入: 10<br>输出: 36<br>解释: 10 = 3 + 3 + 4, 3 × 3 × 4 = 36</p>
+<p>提示：</p>
+<p>2 &lt;= n &lt;= 1000</p>
+<p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/jian-sheng-zi-ii-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/jian-sheng-zi-ii-lcof</a></p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//  贪婪算法</span></span><br><span class="line"><span class="comment">//  n&gt;=5时，多剪3能保证结果最大</span></span><br><span class="line"><span class="comment">//  n%3=0,1,2讨论</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">cuttingRope</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="comment">//  100.00% 36.91%</span></span><br><span class="line">        <span class="keyword">if</span>(n&lt;<span class="number">4</span>) <span class="keyword">return</span> n<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">if</span>(n==<span class="number">4</span>) <span class="keyword">return</span> n;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> ans=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(n&gt;<span class="number">4</span>) &#123;</span><br><span class="line">            n-=<span class="number">3</span>;</span><br><span class="line">            ans*=<span class="number">3</span>;</span><br><span class="line">            ans%=<span class="number">1000000007</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> ans*n%<span class="number">1000000007</span>; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <h2 id="剑指-Offer-15-二进制中1的个数"><a href="#剑指-Offer-15-二进制中1的个数" class="headerlink" title="剑指 Offer 15. 二进制中1的个数"></a>剑指 Offer 15. 二进制中1的个数</h2><blockquote>
 <p>请实现一个函数，输入一个整数，输出该数二进制表示中 1 的个数。例如，把 9 表示成二进制是 1001，有 2 位是 1。因此，如果输入 9，则该函数输出 2。</p>
 <p>示例 1：</p>
@@ -981,52 +998,9 @@ top:40vh;
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 24
+        Total : 23
         </div>
         <!-- search  -->
         
@@ -1042,7 +1016,7 @@ top:40vh;
     
     
         <li class="archive-post-item">
-            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/post/LeetCode-剑指Offer-Part4/" >LeetCode - 剑指Offer - Part3</a>
+            <span class="archive-post-date">09/05</span><a class="archive-post-title" href= "/post/LeetCode-剑指Offer-Part4/" >LeetCode - 剑指Offer - Part4</a>
         </li>
     
     
@@ -1058,11 +1032,6 @@ top:40vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">09/01</span><a class="archive-post-title" href= "/post/LeetCode-剑指Offer-Part1/" >LeetCode - 剑指Offer - Part1</a>
-        </li>
-    
-    
-        <li class="archive-post-item">
-            <span class="archive-post-date">08/01</span><a class="archive-post-title" href= "/post/Android-Goldfish/" >Android - Goldfish</a>
         </li>
     
     
