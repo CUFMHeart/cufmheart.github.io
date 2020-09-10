@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="CUFMH2Blog">
 <meta property="og:description" content="秦时明月汉时关，万里长征人未还。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-09-07T09:16:12.334Z">
+<meta property="og:updated_time" content="2020-09-08T17:59:07.485Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode - 剑指Offer - Part1">
 <meta name="twitter:description" content="秦时明月汉时关，万里长征人未还。">
@@ -505,7 +505,7 @@ height:40vh;
 <p>注意一下效率问题即可，避免在递归中重复计算某些项。</p>
 <p>-&gt; 动态规划</p>
 </blockquote>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">//  100.00% 43.52%</span></span><br><span class="line">	<span class="function"><span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(n==<span class="number">0</span> || n==<span class="number">1</span>)   <span class="keyword">return</span> n;</span><br><span class="line">		<span class="keyword">int</span> a=<span class="number">1</span>, b=<span class="number">0</span>;</span><br><span class="line">    <span class="comment">//	青蛙跳台阶</span></span><br><span class="line">    <span class="comment">//	100.00%	80.35%</span></span><br><span class="line">    <span class="comment">//	if(n&lt;2)   return 1;</span></span><br><span class="line">		<span class="comment">//	int a=1, b=1;</span></span><br><span class="line">		<span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;n; i++) &#123;</span><br><span class="line">			a=a+b;</span><br><span class="line">			b=a-b;</span><br><span class="line">			a%=<span class="number">1000000007</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> a;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">//  100.00% 43.52%</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">fib</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n==<span class="number">0</span> || n==<span class="number">1</span>)   <span class="keyword">return</span> n;</span><br><span class="line">    <span class="keyword">int</span> a=<span class="number">1</span>, b=<span class="number">0</span>;</span><br><span class="line">    <span class="comment">//	青蛙跳台阶</span></span><br><span class="line">    <span class="comment">//	100.00%	80.35%</span></span><br><span class="line">    <span class="comment">//	if(n&lt;2)   return 1;</span></span><br><span class="line">    <span class="comment">//	int a=1, b=1;</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i&lt;n; i++) &#123;</span><br><span class="line">      a=a+b;</span><br><span class="line">      b=a-b;</span><br><span class="line">      a%=<span class="number">1000000007</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> a;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <hr>
 
     </article>
@@ -961,9 +961,32 @@ top:40vh;
     
     
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 23
+        Total : 24
         </div>
         <!-- search  -->
         
@@ -976,6 +999,11 @@ top:40vh;
     
     <div class="archive-year"> 2020 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">09/09</span><a class="archive-post-title" href= "/post/LeetCode-剑指Offer-Part5/" >LeetCode - 剑指Offer - Part5</a>
+        </li>
     
     
         <li class="archive-post-item">
