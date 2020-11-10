@@ -28,7 +28,7 @@
 <meta property="og:site_name" content="CUFMH2Blog">
 <meta property="og:description" content="但使龙城飞将在，不教胡马渡阴山。">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-09-08T13:12:13.888Z">
+<meta property="og:updated_time" content="2020-09-24T08:18:35.741Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeetCode - 剑指Offer - Part2">
 <meta name="twitter:description" content="但使龙城飞将在，不教胡马渡阴山。">
@@ -514,6 +514,7 @@ height:40vh;
 <p>来源：力扣（LeetCode）<br>链接：<a href="https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof" target="_blank" rel="noopener">https://leetcode-cn.com/problems/da-yin-cong-1dao-zui-da-de-nwei-shu-lcof</a></p>
 </blockquote>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; printNumbers(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="comment">//  92.95%  77.06%</span></span><br><span class="line">        <span class="keyword">int</span> num=<span class="number">1</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; res;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++) &#123; num*=<span class="number">10</span>; &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;num;i++) &#123; res.push_back(i); &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="built_in">string</span> str=<span class="string">"0"</span>;</span><br><span class="line"><span class="keyword">int</span> n=<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">fun</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">//    str+1;</span></span><br><span class="line">    <span class="keyword">int</span> len=str.size();</span><br><span class="line">    <span class="keyword">int</span> p=len<span class="number">-1</span>;</span><br><span class="line">    str[p]=str[p]+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(str[p]&gt;<span class="string">'9'</span>) &#123;</span><br><span class="line">        str[p]=<span class="string">'0'</span>;</span><br><span class="line">        p--;</span><br><span class="line">        <span class="keyword">if</span>(p&lt;<span class="number">0</span>) &#123;</span><br><span class="line">            str=<span class="string">"1"</span>+str;</span><br><span class="line">            len++;</span><br><span class="line">        &#125; <span class="keyword">else</span> str[p]=str[p]+<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(len&gt;n) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; str &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(fun()) &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h2 id="剑指-Offer-18-删除链表的节点"><a href="#剑指-Offer-18-删除链表的节点" class="headerlink" title="剑指 Offer 18. 删除链表的节点"></a>剑指 Offer 18. 删除链表的节点</h2><blockquote>
 <p>给定单向链表的头指针和一个要删除的节点的值，定义一个函数删除该节点。</p>
 <p>返回删除后的链表的头节点。</p>
@@ -1067,12 +1068,9 @@ top:40vh;
     
     
     
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 27
+        Total : 28
         </div>
         <!-- search  -->
         
@@ -1124,6 +1122,11 @@ top:40vh;
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/01</span><a class="archive-post-title" href= "/post/Android-Goldfish/" >Android - Goldfish</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/01</span><a class="archive-post-title" href= "/post/Android-Goldfish/Android-Goldfish/" >Android - Goldfish</a>
         </li>
     
     
@@ -1241,11 +1244,11 @@ top:40vh;
     
         <span class="sidebar-tag-name" data-tags="AR/MR"><span class="iconfont-archer">&#xe606;</span>AR/MR</span>
     
+        <span class="sidebar-tag-name" data-tags="Software-Testing"><span class="iconfont-archer">&#xe606;</span>Software-Testing</span>
+    
         <span class="sidebar-tag-name" data-tags="LeetCode"><span class="iconfont-archer">&#xe606;</span>LeetCode</span>
     
         <span class="sidebar-tag-name" data-tags="剑指Offer"><span class="iconfont-archer">&#xe606;</span>剑指Offer</span>
-    
-        <span class="sidebar-tag-name" data-tags="Software-Testing"><span class="iconfont-archer">&#xe606;</span>Software-Testing</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1282,9 +1285,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="3D-Game-Programming-Design"><span class="iconfont-archer">&#xe60a;</span>3D-Game-Programming-Design</span>
     
-        <span class="sidebar-category-name" data-categories="Programming"><span class="iconfont-archer">&#xe60a;</span>Programming</span>
-    
         <span class="sidebar-category-name" data-categories="Software-Testing"><span class="iconfont-archer">&#xe60a;</span>Software-Testing</span>
+    
+        <span class="sidebar-category-name" data-categories="Programming"><span class="iconfont-archer">&#xe60a;</span>Programming</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
@@ -1321,7 +1324,24 @@ jsonContent:
     
         <script src="/scripts/share.js" async></script>    
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
 </html>
 
 

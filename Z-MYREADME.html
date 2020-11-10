@@ -27,7 +27,7 @@
 <meta property="og:site_name" content="CUFMH2Blog">
 <meta property="og:description" content="2020-07-04 废弃主题 yilia2，编辑主题 NEXT 废弃主题 NEXT，编辑主题 archer 修改主页标题、副标题、用户名、用户签名； 修改用户头像、主页背景图、文章背景图； 修改侧边 Site 栏，保留 social 分享项； 副标题字体大小优化，各封面图高度优化； 文章页面摘要信息栏优化，保留分享按钮； 删除滑动显示的标题栏 banner-show； 主题颜色修改； 侧边栏 A">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-07-05T20:52:56.806Z">
+<meta property="og:updated_time" content="2020-11-04T14:33:23.157Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="CUFMH2Blog">
 <meta name="twitter:description" content="2020-07-04 废弃主题 yilia2，编辑主题 NEXT 废弃主题 NEXT，编辑主题 archer 修改主页标题、副标题、用户名、用户签名； 修改用户头像、主页背景图、文章背景图； 修改侧边 Site 栏，保留 social 分享项； 副标题字体大小优化，各封面图高度优化； 文章页面摘要信息栏优化，保留分享按钮； 删除滑动显示的标题栏 banner-show； 主题颜色修改； 侧边栏 A">
@@ -895,12 +895,9 @@
     
     
     
-    
-    
-    
     <div class="total-and-search">
         <div class="total-archive">
-        Total : 27
+        Total : 28
         </div>
         <!-- search  -->
         
@@ -952,6 +949,11 @@
     
         <li class="archive-post-item">
             <span class="archive-post-date">08/01</span><a class="archive-post-title" href= "/post/Android-Goldfish/" >Android - Goldfish</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">08/01</span><a class="archive-post-title" href= "/post/Android-Goldfish/Android-Goldfish/" >Android - Goldfish</a>
         </li>
     
     
@@ -1069,11 +1071,11 @@
     
         <span class="sidebar-tag-name" data-tags="AR/MR"><span class="iconfont-archer">&#xe606;</span>AR/MR</span>
     
+        <span class="sidebar-tag-name" data-tags="Software-Testing"><span class="iconfont-archer">&#xe606;</span>Software-Testing</span>
+    
         <span class="sidebar-tag-name" data-tags="LeetCode"><span class="iconfont-archer">&#xe606;</span>LeetCode</span>
     
         <span class="sidebar-tag-name" data-tags="剑指Offer"><span class="iconfont-archer">&#xe606;</span>剑指Offer</span>
-    
-        <span class="sidebar-tag-name" data-tags="Software-Testing"><span class="iconfont-archer">&#xe606;</span>Software-Testing</span>
     
     </div>
     <div class="iconfont-archer sidebar-tags-empty">&#xe678;</div>
@@ -1110,9 +1112,9 @@ jsonContent:
     
         <span class="sidebar-category-name" data-categories="3D-Game-Programming-Design"><span class="iconfont-archer">&#xe60a;</span>3D-Game-Programming-Design</span>
     
-        <span class="sidebar-category-name" data-categories="Programming"><span class="iconfont-archer">&#xe60a;</span>Programming</span>
-    
         <span class="sidebar-category-name" data-categories="Software-Testing"><span class="iconfont-archer">&#xe60a;</span>Software-Testing</span>
+    
+        <span class="sidebar-category-name" data-categories="Programming"><span class="iconfont-archer">&#xe60a;</span>Programming</span>
     
     </div>
     <div class="iconfont-archer sidebar-categories-empty">&#xe678;</div>
@@ -1147,7 +1149,24 @@ jsonContent:
     </div>
     <!-- async load share.js -->
      
-    </body>
+    <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<!-- <script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+</body>
 </html>
 
 
